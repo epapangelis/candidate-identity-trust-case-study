@@ -1,0 +1,591 @@
+Abstract
+Organizations increasingly confront a threat in remote hiring: the ‘phantom candidate’, a synthetic persona created using artificial intelligence by hostile actors who pose as legitimate applicants to infiltrate organizations through remote hiring processes and secure employment as remote workers. State-sponsored phantom candidates leverage deepfake technology for video interviews, AI-generated credentials, and fabricated digital identities to secure organizational access, posing security and operational risks. Drawing upon personnel assessment validity frameworks and high-reliability organizing perspectives, we develop a framework centered on four detection strategies: (1) designing assessment complexity that exposes AI consistency failures across time and contexts; (2) implementing multi-modal verification that exploits AI coordination limitations across independent channels; (3) building organizational vigilance through systematic threat intelligence and cross-functional learning; and (4) integrating human judgment with automated detection to leverage complementary capabilities. The framework addresses the ontological validity challenge posed when selection systems assess entirely fabricated personas rather than authentic candidates. This requires explicit verification of the foundational assumption that a human referent exists whose performance can be predicted. The framework also provides practitioners with evidence-based methods for maintaining hiring integrity while preserving assessment validity in an era of sophisticated digital deception.
+
+Keywords
+Remote hiring securityDeepfake detectionAssessment validityOrganizational vigilance
+1. Introduction
+The global shift toward remote work has altered the architecture of personnel selection (Van Iddekinge, Arnold, Aguinis, Lang, & Lievens, 2023). By increasingly decoupling assessment from physical co-presence, organizations have gained increased access to diverse talent but have also weakened the implicit, long-standing safeguards of identity verification. The resulting structural change has created a systemic vulnerability, now exploited by a concerning new phenomenon: the deployment of the ‘phantom candidate’—a synthetic persona engineered with artificial intelligence by hostile actors posing as legitimate candidates to bypass remote vetting procedures and secure employment through remote hiring processes (Son, 2025).
+Reports from the U.S. Federal Bureau of Investigation now explicitly warn of threat actors deploying deepfake technologies and stolen personally identifiable information to successfully pass remote video interviews, securing employment in sensitive sectors to exfiltrate data and intellectual property (FBI Internet Crime Complaint Center, 2022). Cybersecurity analyses document sophisticated, ongoing campaigns where phantom employees, hired through deceptive means, have caused millions of dollars in financial losses and established persistent security vulnerabilities within hundreds of organizations (Heichler, 2025). Legal advisories report that over 300 U.S. companies have inadvertently hired fraudulent candidates, with some maintaining organizational access for 4–6 months before detection (Alston & Bird, 2025). Government documentation reveals systematic complaints involving “voice spoofing, or potentially voice deepfakes” during online interviews where “actions and lip movement of the person seen on-camera do not completely coordinate with the audio of the person speaking” (FBI Internet Crime Complaint Center, 2022). The coordinated, state-linked nature of these schemes documented across multiple jurisdictions demonstrates that synthetic identity fraud represents organized rather than opportunistic activity.
+Personnel assessment validity, even under its current unitary formulation, presupposes a foundational condition that is rarely tested explicitly: that assessment responses arise from the cognitive and behavioral processes of an authentic human candidate, whose future job performance can be predicted from those processes (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014; Society for Industrial and Organizational Psychology, 2018; cf. Messick, 1995). Physical co-presence in traditional hiring provided implicit authentication—when candidates appeared in person for interviews or submitted handwritten applications, organizations could reasonably assume they were assessing actual human beings. Remote assessment has eliminated this implicit safeguard, while the response-process assumption underlying validity arguments has not been adapted to require explicit verification. Synthetic identity fraud violates this prerequisite by introducing entities that can generate assessment responses but possess no actual knowledge, skills, or abilities to measure and no future job performance to predict. Our framework addresses this challenge by positioning authenticity verification as a prerequisite control—analogous to identity authentication protocols in high-stakes standardized testing such as the GRE or GMAT—that must be established before personnel assessment validity frameworks can proceed to evaluate whether assessments accurately measure job-relevant competencies and predict performance outcomes (Cizek & Wollack, 2016).
+Malicious synthetic identity fraud also differs substantially in intent, motivation, and potential consequences from traditional applicant deception, thereby requiring reassessment of the validity arguments that underlie personnel assessment (AERA et al., 2014; Ho, Powell, & Stanley, 2021; Society for Industrial and Organizational Psychology, 2018). The appearance of the phantom candidate poses an ontological problem for the science of personnel selection (Sackett, Lievens, Van Iddekinge, & Kuncel, 2017; Tippins, Oswald, & McPhail, 2021). The challenge is not merely one of measurement error, but of the nonexistence of the entity to be measured. The scientific legitimacy of any selection procedure rests upon its position within a nomological network—the system of established relationships connecting a latent construct (e.g., an individual's cognitive ability), its operationalization (e.g., a test score), and theoretically related outcomes (e.g., job performance) (Binning & Barrett, 1989; Kane, 2013). The phantom candidate severs the foundational link in this chain. When an assessment prompt is processed not by a human mind drawing upon authentic experience but by an algorithmic proxy, the resulting output is not an indicator of a latent human trait. Instead, the relationship is between a query and a probabilistic textual or visual generation. The inferential basis of personnel selection science, which depends on predicting future human behavior from present human characteristics, is rendered spurious in these encounters. Traditional frameworks are predicated on the telltale signs of human dishonesty—increased cognitive load, emotional leakage, or behavioral over-compensation that arise when humans attempt to deceive (DePaulo et al., 2003; Vrij, Hartwig, & Granhag, 2019).
+Generative artificial intelligence, while remarkably capable, is not an infallible system. AI operates on principles that create specific, documented, and predictable constraints. Technical research confirms that probabilistic reasoning results in demonstrable failures in maintaining logical and narrative consistency when queried across different contexts or over time (Mündler et al., 2023). Furthermore, the computational difficulty of coordinating separate generative models for language, audio, and video results in detectable artifacts and synchronization failures during real-time, multi-modal interaction (Shao, Wu, & Liu, 2023). These are not random glitches but inherent properties of the technology's architecture, providing a stable, evidence-based foundation for intervention.
+Drawing upon personnel assessment validity frameworks (Schmitt & Chan, 1998; Tippins et al., 2021) and high-reliability organizing perspectives (Weick & Sutcliffe, 2015), we develop a framework that synthesizes insights from multiple theoretical domains into four actionable pillars. First, we propose tactical strategies of assessment design complexity and verification diversity to systematically probe and expose the identified architectural weaknesses of AI systems. Second, to address the high-consequence, uncertain nature of the phantom candidate threat, we draw on high-reliability organizing principles (Weick & Sutcliffe, 2015) to conceptualize the cultural and procedural posture required for managing complex, failure-intolerant systems. Finally, we propose the necessity of socio-technical integration for implementation, specifying how to formally augment human contextual judgment with the technical detection capabilities of automated tools.
+We begin by reviewing the theoretical underpinnings of personnel assessment validity and high-reliability organizing to further delineate the conceptual space our framework occupies and the specific gaps it aims to fill. We then articulate four formal research propositions, detailing the causal mechanisms and empirical evidence for each pillar of the framework. We conclude by exploring the implications for human resource management theory and practice, addressing critical implementation and ethical challenges, and outlining a comprehensive research agenda to equip organizations for an evolving era of digital hiring.
+2. Literature review and theoretical background
+2.1. Phenomenological background
+Synthetic identity creation involves creating entirely fictitious candidate personas using deepfakes for realistic video/audio representations and real-time facial mapping during interviews (Öhman, 2022; Uittenhove, Shahreza, Marcel, & Ramon, 2025). Deepfake technology in hiring contexts uses generative video and audio manipulation to create synthetic interview participants, mapping facial expressions and voice patterns onto fabricated identities or real individuals (Ajder, Patrini, Cavalli, & Cullen, 2019). Generative Adversarial Networks produce photorealistic profile pictures and fabricate complete digital footprints, including social media profiles and portfolio websites (Goodfellow, 2014). Verification evasion uses AI to create fraudulent documents (diplomas, certificates, passports, IDs) increasingly difficult to distinguish from legitimate ones, potentially bypassing human and automated checks (Mirsky & Lee, 2021). AI can also circumvent digital verification processes by identifying security weaknesses or generating data patterns to fool detection algorithms, as seen in North Korean IT workers using stolen American identities with AI-enhanced masking (Department of Justice, 2025; Son, 2025). Motivations range from financial gain through unqualified employment to corporate espionage, data theft, and inserting malicious actors into sensitive positions. The U.S. Department of Justice documented cases where fraudulent employees diverted wages to fund illicit programs (Department of Justice, 2025). Cybersecurity, financial services, and technology sectors report the highest incidence rates due to their sensitive data and systems. Interview response augmentation employs AI tools to enhance candidates' performance during remote assessments (Tschang & Almirall, 2021).
+Our framework focuses specifically on malicious synthetic identity fraud—scenarios where entirely fabricated personas interact with selection systems and no authentic human candidate exists. This distinction matters because when real candidates use AI assistance for application enhancement, traditional validity frameworks remain applicable: an authentic human referent exists whose actual capabilities correlate with assessment performance and whose future job performance can be predicted from present characteristics (Society for Industrial and Organizational Psychology, 2018; Tippins et al., 2021). The phantom candidate threat eliminates this foundational assumption by severing the link between assessment responses and human competencies. The technologies documented above—deepfakes for realistic video interviews, generative AI for fabricated credentials, identity verification evasion through algorithmic exploitation—enable this qualitative escalation from human deception (where actual capabilities are misrepresented) to complete fabrication (where no authentic capabilities exist to assess).
+2.2. Personnel assessment validity frameworks: Core principles and contemporary challenges
+Personnel selection rests on a body of validity theory that has evolved substantially since the mid-twentieth-century conceptualization of validity as three discrete types: content, criterion-related, and construct. The current consensus, codified in the Standards for Educational and Psychological Testing (AERA et al., 2014) and the Principles for the Validation and Use of Personnel Selection Procedures (Society for Industrial and Organizational Psychology, 2018, p. 4), treats validity as a unitary concept—a single overarching judgment about the degree to which accumulated evidence and theory support the proposed interpretation and use of test scores. What were once described as distinct types of validity are now understood as different sources of evidence bearing on this single argument. The Standards identify five such sources: test content, response processes, internal structure, relations to other variables, and consequences of testing (AERA et al., 2014, pp. 26–31). For personnel selection, the resulting validity argument concerns whether scores support accurate inferences about job-relevant knowledge, skills, abilities, and other characteristics (KSAOs) and predict subsequent work behavior (Sackett, Zhang, Berry, & Lievens, 2022; Schmitt & Chan, 1998; Society for Industrial and Organizational Psychology, 2018; Tippins et al., 2021).
+The phantom candidate threat is consequential precisely because it disrupts this validity argument at its foundation, although it does not implicate all five sources equally. Evidence based on response processes is the source most directly violated: any score interpretation assumes that responses were produced by the cognitive and behavioral processes the procedure was designed to elicit (AERA et al., 2014; Society for Industrial and Organizational Psychology, 2018), an assumption that fails when a synthetic persona generates responses algorithmically rather than through human cognition. Content-related evidence is implicated in turn, because content-based validation strategies assume that the entity engaging with assessment content is the same entity whose KSAOs are being inferred. Evidence based on relations to other variables—what was traditionally termed criterion-related validity—is undermined downstream, because predictor–criterion linkages established in samples of authentic candidates cannot be expected to hold for synthetic respondents whose responses index no actual human capability and for whom no future job performance exists to predict (Sackett et al., 2022). Internal-structure and consequences-of-testing evidence are less directly affected, though the consequences source becomes relevant when fraudulent hires generate downstream organizational harm.
+Two distinctions organize the analysis that follows. The first separates the digital assessment context, which introduces validity threats common to all remote candidates (e.g., construct-irrelevant variance from technological proficiency or environmental conditions; Berkelaar & Buzzanell, 2015), from the malicious synthetic identity threat, which violates the more fundamental assumption that an authentic human candidate exists at all. The second is the distinction between validity evidence—the substantive argument supporting a proposed score interpretation (Kane, 2013; Messick, 1989)—and prerequisite controls on score provenance, such as the identity-authentication procedures used by testing organizations like ETS and GMAC (Educational Testing Service, n.d.; Graduate Management Admission Council, n.d.). On this view, such controls must be satisfied before validity evidence can meaningfully be evaluated, because the validity argument presupposes that the scored responses were produced by the identified test taker under standardized conditions (American Educational Research Association [AERA] et al., 2014).
+2.2.1. Digital assessment and validity threats
+Digital selection environments create validity challenges that increase organizational vulnerability. Goretzko and Israel (2022) and König and Langer (2022) argue that digital environments create challenges requiring theoretical attention, identifying problems where algorithmic scoring lacks transparency, making construct validity evaluation difficult. Hickman et al. (2022) extend analysis to machine learning-based selection, identifying algorithmic fairness concerns and changing data conditions that threaten validity over time.
+Brymer, Paraskevas, Josefy, and Ellram (2024) acknowledge dynamic information exchanges in pipeline hiring, arguing that sustained candidate-organization interactions reduce information asymmetries over time. Their empirical analysis of college football recruiting demonstrates that extended information exchange improves hiring outcomes when involving authentic candidate information. However, their model explicitly assumes information authenticity—an assumption that synthetic identity fraud violates. The information processing model's effectiveness depends on signal quality and interpretation accuracy. Basch and Melchers (2021) demonstrate that technology-mediated interviews enable new impression management tactics where raters may misattribute a candidate's smooth answers to actual interview skills and qualifications, whereas responses might simply stem from the use of notes.
+2.2.2. Malicious synthetic identity fraud: Violation of foundational authenticity assumptions
+Applicant misrepresentation is among the most extensively studied threats to selection validity, and the cumulative literature provides a useful baseline against which the synthetic identity threat can be characterized. Meta-analytic evidence documents that applicants regularly inflate self-presentations on personality and other self-report measures, with within-subjects effect sizes typically in the moderate-to-large range, and that this faking distorts score distributions and rank orders even when predictive utility is not fully eliminated (Birkeland, Manson, Kisamore, Brannick, & Smith, 2006; Hu & Connelly, 2021; Salgado, 2016). Fletcher and Trautrims (2024) analyze this behavior as an information-asymmetry problem in which candidates possess private information about their qualifications and strategically present themselves favorably. Across these treatments a common assumption holds: the candidate is a real person whose misrepresentations bear some relation, however distorted, to actual underlying capabilities. Selection science remains workable in this regime because a human referent exists whose true KSAOs and future job performance can in principle be estimated and predicted, even if the available evidence is noisy.
+Recent work on candidate use of generative AI in selection occupies an intermediate position on this spectrum and illustrates where the prior literature begins to strain. Lievens and Dunlop (2025) argue against treating all applicant GenAI use as inherently disruptive, noting that GenAI assistance can sometimes enhance rather than substitute for authentic candidate capability and may reduce certain forms of construct-irrelevant variance. Companion work has nonetheless raised serious concerns about construct- and criterion-related validity evidence when GenAI substantially substitutes for candidate cognition (Holtrop & Bronzwaer, 2025; Mirowska, 2025), and recent applied studies show that warnings can reduce, but do not eliminate, self-reported GenAI assistance during unproctored assessments (Robie, Wingate, Baytalskaya, & Butera, 2026). What unites these treatments—and what distinguishes them from the threat we address—is that they continue to assume an authentic human candidate behind the application. The validity question is whether the score still indexes that candidate's KSAOs.
+Malicious synthetic identity fraud removes this assumption. As documented in Section 2.1 and corroborated by federal advisories and prosecutions (Department of Justice, 2025; FBI Internet Crime Complaint Center, 2022), threat actors now construct end-to-end fabricated personas using deepfake video and audio, AI-generated credentials, and synthesized digital footprints, with the explicit goal of being hired into remote roles. Unlike a faking applicant or an AI-coached one, a phantom candidate is not a person whose self-presentation is distorted; there is no person at all whose KSAOs the assessment could over- or underestimate. The score, the interview behaviors, the credential package, and the work-sample output are produced by coordinated generative systems in service of an external operator whose interests are unrelated to the role.
+This distinction has direct consequences for the unitary validity argument established in Section 2.2. Validity rests on accumulated evidence that scores can be interpreted as the test developer or user intends, and the Standards explicitly identify response processes as a foundational source of evidence (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014, pp. 26–31; Society for Industrial and Organizational Psychology, 2018). When responses are produced by algorithmic generation rather than the cognitive and behavioral processes the procedure was designed to elicit, the response-process assumption is not merely strained but violated. Content evidence and evidence based on relations to other variables are then undermined as a consequence, because both presuppose that an authentic human candidate is engaging with the content and that future job performance exists to be predicted. The inferential chain on which personnel selection science depends—from present human characteristics to future human behavior—is severed not through measurement error but through the absence of the entity to be measured. Re-establishing this inferential chain requires a control that operates upstream of the validity argument itself, which is the subject of Section 2.2.3.
+2.2.3. Authenticity verification as prerequisite control: Precedents from high-stakes assessment
+The distinction between authenticity verification as a prerequisite control versus an embedded measurement component has direct precedent in high-stakes testing contexts where substantial consequences attach to score interpretations. Standardized examinations for graduate admissions (GRE, GMAT) and professional licensure treat identity authentication as foundational security controls that must be satisfied before psychometric properties of scores can be meaningfully interpreted. The Educational Testing Service implements comprehensive authentication protocols for the GRE General Test, including biometric facial recognition that compares test-takers to identification documents, artificial intelligence verification that randomly confirms identity match multiple times throughout the examination, and palm-vein scanning technology at testing centers. The Graduate Management Admission Council employs similar authentication infrastructure for the GMAT, utilizing approved identification validation, live check-in via human proctors before examination commencement, continuous monitoring through webcam and microphone during testing, and post-examination forensic analysis to identify authentication failures (ETS, 2024; GMAC, 2024). These security measures are conceptualized not as additional validity evidence for the assessment instruments themselves, but rather as prerequisite controls ensuring that scores originate from authenticated test-takers. Test security threats—including proxy testing, impersonation, and identity fraud—are classified as factors that undermine score meaning by violating assumptions about score provenance rather than as psychometric deficiencies in the instruments. The standards emphasize that test users bear responsibility for implementing authentication controls appropriate to their assessment contexts, with more stringent controls required when scores inform high-stakes decisions.
+We adopt this same conceptualization for personnel selection under synthetic identity threats. Authenticity verification operates as a foundational control that establishes whether the entity being assessed is an authentic human candidate whose performance can be predicted. This prerequisite must be satisfied before the unitary validity argument and the reliability requirements that support it can be meaningfully evaluated for whether assessments accurately measure job-relevant KSAOs and predict job performance. Unlike high-stakes standardized testing, where authentication occurs at centralized testing facilities with specialized equipment, remote hiring contexts require organizations to implement authenticity verification through assessment design strategies that exploit documented AI technical limitations. The quantified predictions throughout our framework (e.g., multiplicative detection advantages, percentage accuracy improvements, time reduction estimates) are presented as illustrative examples demonstrating theoretical principles rather than empirically validated performance guarantees. Our four propositions specify detection strategies that function as authenticity verification controls, enabling organizations to establish this foundational prerequisite before proceeding with validity-focused selection decisions.
+2.3. High-reliability organizing perspectives for personnel selection under phantom candidate threats
+Personnel assessment validity frameworks identify what must be protected—the multiple sources of validity evidence and reliability requirements that support the validity argument for a selection system—but do not specify how organizations should structure themselves to detect and respond to systematic threats that target these requirements. Phantom candidates represent low-probability, high-consequence failures where individual hiring mistakes create systemic organizational vulnerabilities through insider access. Traditional human resource management practices treat verification as a routine administrative process rather than as a systematic threat management requiring organizational capabilities that span HR, cybersecurity, legal, and technical functions. High-reliability organizing principles address how organizations can maintain critical system functions when operating in environments where failure consequences exceed normal tolerance levels and threats evolve through sophisticated, adaptive mechanisms (Weick & Sutcliffe, 2015). The principles translate directly to maintaining hiring integrity: constant questioning of verification adequacy (preoccupation with failure), refusing to treat verification as checklist compliance (reluctance to simplify), and integrating specialized knowledge across functions because phantom candidate detection requires psychological assessment expertise, technical analysis capabilities, and legal investigation competencies that exceed traditional HR boundaries (deference to expertise).
+Lee (2021) demonstrates that cybersecurity threats create high-consequence, low-probability scenarios requiring organizational mindfulness and systematic vigilance, revealing direct relevance to hiring security challenges where phantom candidates exploit organizational assumptions about candidate authenticity. The translation establishes that personnel selection under fraud conditions shares critical characteristics with systems traditionally addressed through high-reliability organizing: consequences of failure are severe and potentially catastrophic, threats evolve through sophisticated technical capabilities that exploit organizational assumptions, and effective response requires integrating expertise across multiple specialized domains (Nixon & Kerr, 2011).
+Preoccupation with failure requires constantly questioning assumptions about the effectiveness of security controls and searching for new vulnerabilities rather than assuming verification adequacy (Weick & Sutcliffe, 2015). Traditional hiring practices assume candidate authenticity unless obvious red flags appear, operating from a default position of trust. High-reliability organizing inverts this assumption under conditions of systematic threat: organizations actively search for evidence of authenticity rather than passively awaiting deception indicators. FBI documentation of technical indicators, including “voice spoofing” where “actions and lip movement of the person seen on-camera do not completely coordinate with the audio of the person speaking,” demonstrates the systematic nature of threats that organizations must actively monitor (FBI Internet Crime Complaint Center, 2022). Preoccupation with failure in this context means designing assessment processes that treat each verification point as a potential vulnerability requiring active confirmation rather than assumed reliability.
+Reluctance to simplify interpretations addresses the organizational tendency to reduce complex threats to manageable categories or checklist protocols. High-reliability organizing principles require maintaining a deeper understanding of threat complexity and resisting pressure to reduce detection to algorithmic rules or standardized protocols that fraudsters can reverse-engineer (Engemann, 2018). Deference to expertise requires integrating specialized knowledge across organizational functions because phantom candidate detection involves domains that exceed any single function's competencies (Weick & Sutcliffe, 2015). Traditional personnel selection resides within human resource management, which possesses expertise in psychological assessment, interview design, and candidate evaluation. Phantom candidate detection additionally requires cybersecurity expertise to identify technical artifacts of AI synthesis, legal expertise to navigate privacy and compliance requirements during intensive verification, and information technology capabilities to implement multi-modal verification systems. Francis and Michas (2013) provide evidence from audit quality research that fraud detection effectiveness depends on systematic organizational capabilities rather than individual detector expertise, demonstrating that complex fraud requires coordinated specialist integration.
+Cross-functional integration becomes operationally critical rather than merely aspirational when threats span multiple domains. HR professionals understand construct validity and assessment design, but may lack the technical knowledge to identify deepfake artifacts or AI-generated response patterns. Cybersecurity professionals can detect technical synthesis indicators but may not understand how these artifacts threaten criterion-related validity or what assessment modifications would expose coordination failures. Legal professionals understand compliance requirements but need HR and security input to design verification processes that satisfy legal constraints while maintaining detection effectiveness. High-reliability organizing provides frameworks for systematic integration: establishing standing cross-functional committees with explicit responsibility for hiring security, creating shared knowledge repositories where technical threat intelligence informs HR practice and assessment outcomes inform security monitoring, and developing joint training programs that build mutual understanding across specialized domains.
+The integration of personnel assessment validity frameworks with high-reliability organizing perspectives creates the foundation for our four-proposition framework. Validity frameworks establish what must be maintained: response-process and content-related evidence supporting authentic KSAO measurement, evidence based on relations to other variables supporting predictive accuracy, and reliability supporting measurement consistency (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014; Society for Industrial and Organizational Psychology, 2018; Zhang, Van Iddekinge, Ployhart, Arnold, & Jordan, 2023). High-reliability organizing specifies how organizations structure themselves to protect these validity requirements under systematic threat: preoccupation with failure drives continuous verification improvement, reluctance to simplify maintains nuanced threat understanding, and deference to expertise enables cross-functional integration. The four propositions that follow specify concrete mechanisms through which organizations can exploit AI technical limitations while maintaining these organizational capabilities.
+2.4. Integrated framework: Selection integrity under synthetic identity threats
+Our framework integrates the unitary view of personnel assessment validity (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014; Society for Industrial and Organizational Psychology, 2018; Tippins et al., 2021) with high-reliability organizing perspectives (Weick & Sutcliffe, 2015) through a nested structure that addresses both what must be protected in personnel selection and how organizations protect it under systematic threat conditions.
+The validity argument for a selection system specifies what effective selection requires: response-process, content-related, and criterion-related evidence supporting accurate KSAO measurement and predictive accuracy, together with reliability of measurement. Authenticity verification operates as a prerequisite control on this argument—established before, not as part of, the validity evaluation, analogous to identity authentication in high-stakes standardized testing (ETS, 2024; GMAC, 2024). High-reliability organizing perspectives specify how organizations protect the validity argument under systematic threat: maintaining preoccupation with failure rather than assuming verification adequacy, refusing to simplify threats into checklist protocols, and integrating specialized expertise across functions. The four propositions that follow specify concrete mechanisms implementing these principles, exploiting documented AI technical limitations while preserving the validity argument an organization is trying to make about its hires.
+Fig. 1 displays this nested architecture, with authenticity verification as the foundational layer that the four propositions establish, the validity argument as the middle layer that authenticity verification protects, and high-reliability organizing as the cross-cutting design logic. The propositions are complementary rather than substitutable. Proposition 1 exploits AI consistency failures across time and contexts. Proposition 2 exploits coordination failures across independent verification modalities, generating multiplicative rather than additive detection advantages. Proposition 3 builds organizational learning capacity that adapts as fraud techniques evolve. Proposition 4 integrates human contextual judgment with automated technical analysis to leverage complementary strengths. Each is developed in turn in Section 3.
+Fig. 1
+Download: Download high-res image (226KB)
+Download: Download full-size image
+Fig. 1. An integrated framework for detecting AI-enabled identity deception in personnel selection: theoretical foundations, four detection mechanisms, and the authenticity prerequisite.
+
+Table 1 maps each detection mechanism to its theoretical basis, the AI limitation it exploits, and the validity sources it supports, demonstrating that the framework derives countermeasures from established theory rather than ad hoc design. Table 2 translates each mechanism into implementation components, illustrative indicators of effectiveness, and validity cautions, bridging theoretical principles to operational deployment. Table 3 sets out a corresponding research and practice agenda.
+Table 1. Integrated Theoretical Framework.
+
+Detection Mechanism	Theoretical Basis	AI Limitation Exploited	Validity Sources Supported
+P1: Assessment Complexity	Content-related and response-process evidence; HRO reluctance to simplify	Probabilistic-reasoning architecture: consistency degrades across temporal separations and contextual reframings	Content-related; response-process
+P2: Multi-Modal Verification	Convergent-evidence logic; HRO deference to expertise	Coordination across independent generative models compounds failure rates	Response-process; relations to other variables (convergent evidence)
+P3: Systematic Learning	Continuous accumulation of validity evidence; HRO preoccupation with failure	Threat evolution outpaces ad hoc detection; failure patterns are recognizable only with accumulation	All sources, via continuous monitoring
+P4: Human–AI Integration	Complementary detection capabilities; HRO cross-functional coordination	Neither pure-human nor pure-automated approaches simultaneously capture technical artifacts and contextual nuance	Response-process; relations to other variables
+Table 2. Propositions and Practical Implications.
+
+Detection Mechanism	Implementation Components	Illustrative Indicators of Effectiveness	Validity Cautions
+P1: Assessment Complexity	Cognitive-domain transitions within an interview; temporally separated related questions; unexpected scenario injection; multi-step reasoning sequences	Detectable consistency gaps emerge as separation and reframing increase	Maintain construct relevance; avoid construct-irrelevant variance from cognitive load itself, especially across language proficiency or accommodation needs
+P2: Multi-Modal Verification	Integrated video + audio + document + behavioral channels; cross-modal consistency review; environmental variation tests	Detection power increases nonlinearly as modalities are integrated	Avoid disparate impact for candidates with sensory, environmental, or technological constraints
+P3: Systematic Learning	Threat-intelligence repositories; periodic cross-functional incident reviews; cross-industry information sharing	Time-to-adaptation shortens as institutional memory accumulates	Periodically revalidate that evolving detection logic does not drift away from job-related KSAOs
+P4: Human–AI Integration	Automated artifact detection as input to human review; calibrated decision protocols; explainable model outputs	Combined detection consistently outperforms either component alone	Preserve human judgment for high-stakes decisions; guard against algorithmic anchoring and over-reliance
+Table 3. Research and Practice Agenda.
+
+Research Priority	Key Questions	Methodological Approach	Practice Development	Implementation Timeline	Illustrative Success Indicators
+Cognitive Load Optimization	How do different complexity variations (analytical, creative, recall, adaptive) affect AI vs. human performance? What cognitive load types maximize detection while minimizing genuine candidate penalties? Which temporal separation intervals optimize detection effectiveness?	Laboratory experiments with confederate AI-assisted participants (target n = 200+); Process tracing of assessor behavior using eye-tracking and think-aloud protocols; Field validation studies across approximately 10+ organizations; Longitudinal performance tracking over 12–18 months	Development of: Standardized interview complexity protocols; Assessor training materials and certification programs; Performance benchmarking tools; Quality assurance frameworks; Cognitive load measurement instruments	Phase 1 (approximately 6 months): Pilot testing with 5 organizations
+Phase 2 (approximately 12 months): Full protocol development and validation
+Phase 3 (approximately 18 months): Scaling and refinement
+Phase 4 (approximately 24 months): Industry-wide implementation	Improved detection accuracy relative to baseline; broad implementation adoption; high assessor certification completion; favorable cost-effectiveness profile
+Multi-Modal Detection Synergy	Does detection power truly increase multiplicatively with modalities? Which specific combinations (biometric, document, digital, reference) provide optimal diagnostic value? How do environmental variations affect multi-modal consistency?	Controlled experiments varying modality number/type with approximately 500+ simulated fraud cases; Archival analysis of approximately 1000+ verification outcomes; Machine learning analysis of consistency patterns; Environmental variation testing across conditions	Creation of: Integrated verification platforms; Cross-modal inconsistency analysis algorithms; Environmental testing protocols; Automated flagging systems; Quality assurance dashboards; Cost-effectiveness optimization tools	Phase 1 (approximately 12 months): Technology platform development
+Phase 2 (approximately 18 months): Algorithm development and testing
+Phase 3 (approximately 24 months): System integration and deployment
+Phase 4 (approximately 30 months): Optimization and scaling	Multiplicative detection power demonstrated; high detection accuracy as modalities increase; reduced processing time and cost per detection; favorable user satisfaction
+Organizational Learning Systems	What learning system components (incident analysis, threat monitoring, knowledge management) most effectively accelerate adaptation? How is threat knowledge optimally shared across HR-Security-IT functions? What predictive capabilities can be developed?	Comparative case studies across approximately 20+ organizations with different learning systems; Longitudinal adaptation tracking over approximately 24 months; Network analysis of knowledge flows using social network analysis; Predictive modeling validation studies	Development of: Threat intelligence frameworks; Incident analysis protocols and databases; Cross-functional communication systems; Knowledge management platforms; Predictive threat modeling tools; Best practice sharing networks	Phase 1 (approximately 3 months): Framework design and pilot testing
+Phase 2 (approximately 9 months): System development and deployment
+Phase 3 (approximately 18 months): Cross-organizational implementation
+Phase 4 (approximately 24 months): Predictive capability development	Shortened time-to-adaptation; demonstrable threat prediction capability; effective cross-functional knowledge sharing; year-over-year detection improvement; reduced cost per prevented incident
+Construct Validation & Measurement	How can core constructs (Assessment Complexity, Multi-Modal Verification, Human–AI Integration, Systematic Learning) be reliably operationalized and measured? How do we assess detection effectiveness given underreporting challenges?	Scale development studies with factor analysis (target n = 500+); Behavioral measurement validation using objective metrics; Simulation tool development with computer science collaboration; Audit studies for ground truth establishment; Psychometric validation across contexts	Creation of: Validated assessment instruments; Organizational diagnostic tools; Fraud simulation capabilities for training; Behavioral measurement protocols; Performance benchmarking systems; Quality assurance frameworks	Ongoing parallel development: Measurement instruments developed alongside implementation efforts; Validation studies conducted quarterly; Simulation tools updated bi-annually; Benchmarking data collected continuously	Strong evidence supporting score interpretation; high test-retest reliability; demonstrated cross-context measurement invariance; well-validated simulation tools; meaningful benchmarking participation
+Boundary Condition Analysis	How do industry (financial services, technology, government), organizational size (startup to enterprise), culture (risk tolerance, innovation), and regulatory environments moderate framework effectiveness? What cultural adaptations are needed for global implementation?	Cross-sectional surveys across approximately 100+ organizations in 6+ industries; Comparative case studies focusing on contextual differences; Meta-analysis of implementation outcomes; Cultural adaptation studies in approximately 5+ countries; Regulatory impact analysis	Development of: Context-specific implementation guides; Industry-customized protocols; Cultural adaptation frameworks; Regulatory compliance tools; Size-appropriate scaling guidelines; Risk-based implementation strategies	Phase 1 (approximately 12 months): Context mapping and initial adaptation
+Phase 2 (approximately 24 months): Industry-specific validation
+Phase 3 (approximately 36 months): Global implementation testing
+Phase 4 (approximately 48 months): Comprehensive customization framework	Context-specific effectiveness demonstrated; successful implementation across contexts; effective cultural adaptation; consistent regulatory compliance; cost-effectiveness maintained across contexts
+Advanced Technology Integration	How can emerging AI detection technologies (forensic analysis, behavioral biometrics, blockchain verification) be integrated? What human-AI interface designs optimize decision-making? How do we maintain effectiveness as AI fraud capabilities evolve?	Technology evaluation studies; Human-computer interaction research; Continuous technology monitoring; Longitudinal effectiveness tracking; Expert panel validation; Field testing of emerging technologies	Development of: Technology integration roadmaps; Human-AI interface design guidelines; Continuous updating protocols; Emerging technology evaluation frameworks; Vendor assessment criteria; Future-proofing strategies	Continuous evolution: Quarterly technology assessments; Annual major updates; Continuous minor improvements; Future technology preparation; Research partnership maintenance	Successful technology integration; effectiveness maintained despite AI evolution; favorable user interface satisfaction; broad technology adoption; strong future-threat preparedness
+Note: All success indicators in Table 3 are presented as illustrative examples demonstrating the type of evidence that would support framework effectiveness rather than empirically validated targets.
+3. Research propositions
+3.1. Proposition 1: Assessment complexity
+Authentic candidates possess integrated knowledge and experience that enable coherent responses across different contextual framings of the same underlying information. When describing work experiences, educational background, or technical competencies, authentic candidates draw from actual memory and lived experience rather than probabilistic pattern matching to contextual cues (Blackburn & Paterson, 2021). This experiential foundation enables them to maintain logical consistency even when questions approach the same topics through different analytical lenses. For example, when discussing a project management experience first through a “leadership challenges” frame and later through a “technical problem-solving” context, genuine candidates can integrate these perspectives coherently because they derive from the same underlying experience. Responses may vary in emphasis or detail but maintain logical consistency about fundamental facts, timelines, and outcomes. Under the unitary validity argument, this distinction speaks directly to evidence based on response processes (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014; Society for Industrial and Organizational Psychology, 2018): an authentic candidate's responses arise from the integrated cognitive and experiential processes the assessment is designed to engage, whereas a phantom candidate's responses are produced by separate generative processes whose coherence must be externally coordinated.
+Technical research documents specific AI consistency limitations that assessment processes can exploit. Mündler et al. (2023) demonstrate through their SelfCheckGPT benchmark that “sampling multiple responses from an LLM with the same prompt” reveals systematic inconsistencies that would not occur in genuine human reasoning about authentic experiences. An et al. (2024) demonstrate that LLM performance degrades significantly when models must access and use information located in the middle of their input context. Technical limitations in multi-modal synthesis compound these consistency challenges. Real-time deepfake generation creates systematic trade-offs between speed and quality that create detectable artifacts, including inconsistency between visual and audio modalities, such as mismatched lip movements and speech content (Lewis et al., 2020; Patel et al., 2023). Maintaining consistency across multiple communication channels—verbal responses, visual presentation, and behavioral demonstrations—exceeds current AI synthesis capabilities, particularly under interactive assessment conditions (Munikoti et al., 2026; Schulze Buschoff, Akata, Bethge, & Schulz, 2025).
+Contextual reframing approaches present questions about the same experiences or competencies through different analytical frameworks. Initial questions might explore a candidate's technical project through an implementation focus (“What were the primary technical challenges?”), followed later by interpersonal dynamics exploration (“How did you manage stakeholder disagreements during this project?”), and subsequently by resource management analysis (“What budget or timeline constraints affected your approach?”). Authentic candidates can integrate these perspectives coherently, while AI systems may generate inconsistent details due to probabilistic pattern matching to different contextual cues (Zhou, Wang, & Chen, 2023).
+Assessment designs can present technical scenarios requiring candidates to explain concepts verbally, diagram solutions visually, and demonstrate problem-solving approaches behaviorally. Technical research demonstrates that maintaining consistency across these modalities exceeds current AI synthesis capabilities, particularly during real-time interactive assessment (Baer, Waardenburg, & Huysman, 2025; Brown & Vaishampayan, 2025). Detailed elaboration sequences begin with high-level descriptions and progressively request more specific details about the same experiences. Initial questions might explore general project management experience, followed by specific technical implementation details, team dynamics, client interactions, and lessons learned. The progression creates multiple opportunities for inconsistency as AI systems generate increasingly specific details that may contradict earlier responses, while authentic candidates can provide coherent elaboration based on experience.
+Phantom candidates should demonstrate higher rates of internal contradictions when responding to similar questions framed through different contexts. Contradictions should become more frequent as temporal separation increases between related questions, as AI systems lack the persistent memory integration that enables authentic consistency maintenance. AI-generated candidates should struggle particularly with follow-up questions requiring integration of previous responses with new information or contexts. When assessment processes introduce unexpected information and ask candidates to relate it to their stated experience, synthetic responses should reveal inconsistencies or implausible connections that genuine candidates would avoid through actual knowledge integration. Based on the above discussion, we propose:
+Proposition 1
+
+Assessment processes designed to systematically exploit AI consistency limitations through temporal separation and contextual variation of related questions will demonstrate significantly higher detection rates for malicious synthetic identity fraud.
+3.2. Proposition 2: Multi-modal verification
+Personnel selection increasingly employs multi-modal assessment combining verbal interviews, written evaluations, technical demonstrations, and behavioral observations (Hemamou, Guillon, Martin, & Clavel, 2023). Multi-modal assessment serves dual functions in phantom candidate contexts: establishing authenticity prerequisite through convergent verification across independent channels (prerequisite control), while simultaneously maintaining construct validity through multiple indicators of the same underlying competencies (psychometric requirement). This dual function distinguishes multi-modal approaches in fraud detection contexts from traditional multi-method assessment, where convergent evidence serves validity purposes exclusively. When synthetic identity threats are present, organizations must verify that authentic human referents exist before proceeding to evaluate whether assessments accurately measure job-relevant characteristics. Multi-modal assessment is also natively suited to response-process evidence: when a single underlying experience generates verbal, written, and behavioral responses in an authentic candidate, the convergence across channels is itself evidence about the cognitive processes producing the responses (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014). When that convergence breaks down, the response-process assumption itself is what fails.
+Human candidates possess cognitive systems in which knowledge, memory, and expression capabilities draw on a common experiential base (Sackett et al., 2017). When authentic candidates discuss qualifications across different modalities, their responses naturally maintain consistency because all channels access identical experiential foundations. Verbal descriptions, written analyses, and behavioral demonstrations of the same competency draw from this same experiential base. Current technical research reveals that AI systems generate responses across modalities through independent computational processes that must coordinate externally rather than emerging from unified foundations (Liang, Zhu, Wu, & Chen, 2025). Real-time multi-modal synthesis faces trade-offs between speed and quality that create detectable artifacts, particularly inconsistency between visual and audio modalities, such as mismatched lip movements and speech content (Jung, Dai, Liu, & Wu, 2024). These failures occur because visual synthesis, audio generation, and content creation operate through separate computational processes that struggle with real-time coordination.
+Synthesis systems exhibit measurable sensitivity to variability in audio quality, including environmental factors such as background noise, reverberation, and microphone distortion. Environmental sensitivity creates systematic vulnerabilities when AI systems must maintain coordination across modalities under variable assessment conditions. AI systems lack unified generative foundations (Schneider, Meske, & Kuss, 2024). Unlike human experiential integration, AI must coordinate separate models for language generation, visual synthesis, audio production, and behavioral simulation. Each coordination point represents a potential failure mode that compounds as modalities increase.
+For authentic candidates, each additional assessment modality provides another expression channel for the same underlying competencies and experiences. The marginal difficulty of consistency maintenance remains minimal because all channels access identical knowledge foundations. For AI systems, each additional modality increases coordination complexity (Chen & Epps, 2020). When written assessments, behavioral demonstrations, and environmental variations are added, coordination requirements exceed current AI architectural capabilities. Multi-modal assessment creates detection advantages through multiplicative failure probability rather than simple additive effects. To illustrate this multiplicative principle: if we assume an AI system exhibits a 10% probability of detectable failure in any single modality, the probability of maintaining perfect coordination across three independent modalities would become 0.93 = 72.9%, yielding a 27.1% detection probability under these assumptions. This illustrative calculation demonstrates how coordination failure probability compounds as modalities increase, though actual failure rates will vary based on specific AI capabilities, implementation quality, and organizational detection thresholds. The core principle—that coordination requirements create multiplicative rather than additive detection advantages—remains valid across varying technical parameters.
+Jakesch et al. (2023) support this analysis, demonstrating that AI-generated content exhibits distinctive patterns, including lower perplexity (more predictable word choices) and overly formal or polished tone that differ systematically from authentic human expression. When linguistic markers appear alongside technical synthesis artifacts, the convergent evidence provides stronger fraud detection than either signal independently (Liu & Ding, 2025). The technical foundation for multi-modal detection rests on AI architectural constraints rather than temporary implementation limitations. Separate generative models for different modalities create fundamental coordination challenges that persist even as individual model quality improves. Organizations can exploit this architectural constraint through assessment designs that require simultaneous performance across multiple channels.
+Multi-modal verification thus accomplishes authenticity prerequisite establishment (detecting coordination failures indicating synthetic entities) while maintaining construct validity requirements (ensuring assessments measure authentic candidate competencies through convergent evidence). Organizations implementing multi-modal protocols establish foundational authenticity before proceeding to validity-focused evaluation of whether selection systems accurately predict job performance. High-reliability organizing principles support this integration through deference to expertise, as effective multi-modal verification requires coordination between HR professionals assessing candidate qualifications, technical specialists identifying synthesis artifacts, document authentication experts verifying credentials, and behavioral analysts detecting cross-modal inconsistencies.
+Video interviews combined with written technical assessments require candidates to demonstrate competencies through both synchronous verbal communication and asynchronous written analysis. Authentic candidates can switch modalities readily because competencies derive from integrated experience. AI systems must coordinate language models for written content with real-time audio-visual synthesis, creating detectable inconsistencies in technical depth, communication style, or problem-solving approaches across modalities. Document verification integrated with behavioral assessment creates additional coordination requirements. When candidates provide credentials, employment history, and educational documentation, authentic candidates can discuss these elements naturally because documents represent their actual background. AI systems must ensure fabricated credentials align with generated interview responses and behavioral demonstrations, requiring coordination across document generation systems, conversational AI, and video synthesis that creates multiplicative failure opportunities.
+High-reliability organizing principles support multi-modal integration through deference to expertise. Effective multi-modal verification requires coordination between HR professionals who assess candidate qualifications, technical specialists who identify synthesis artifacts, document authentication experts who verify credentials, and behavioral analysts who detect cross-modal inconsistencies. The organizational capability to integrate specialized knowledge across these domains enables systematic exploitation of AI coordination limitations that exceed any single function's detection capabilities. Organizations implementing multi-modal verification establish formal protocols for cross-functional review where technical specialists flag potential synthesis artifacts for HR contextualization, document experts identify credential anomalies for behavioral confirmation, and integrated analysis reveals patterns that isolated examinations miss.
+The multiplicative detection advantage emerges through strategic modality selection and integration. Organizations should prioritize modalities that require different AI model types: verbal communication (language models), visual presentation (video synthesis), written analysis (text generation), behavioral demonstration (real-time coordination), and environmental adaptation (robustness testing). Each modality introduces independent technical challenges that compound when integration is required. Assessment protocols should require candidates to demonstrate consistency across modalities within short timeframes, reducing opportunities for AI systems to generate carefully coordinated responses. Real-time transitions between modalities—asking candidates to verbally explain a concept immediately after written analysis—create coordination challenges that exceed current AI capabilities while remaining natural for authentic candidates. Based on the above discussion, we propose:
+Proposition 2
+
+The capacity to detect malicious synthetic identity fraud by identifying inconsistencies across different assessment and verification modalities increases multiplicatively with the number of distinct, integrated modalities employed.
+3.3. Proposition 3: Systematic learning
+AI-enabled fraud operates through rapid technological evolution that continuously changes attack vectors and technical capabilities. Research documents this evolution clearly, with Kostikova et al. (2026) reviewing “14,648 relevant [LLM] limitation papers [to] identify between 7 and 15 prominent types of limitations [with] [r]easoning [as] the most studied limitation, followed by generalization, hallucination, bias, and security.” The evolution creates asymmetric learning challenges where fraud actors benefit from immediate feedback about successful attack techniques and can rapidly deploy new AI tools, while organizations often learn about fraud attempts only after detection failure, creating inherent disadvantages in the threat-defense cycle.
+Malicious synthetic identity fraud requires expertise spanning HR assessment, AI technology, cybersecurity, and legal compliance. Systematic processes enable effective integration of these diverse knowledge domains, while isolated responses often lack the necessary technical expertise. Emerging research in AI safety and evaluation demonstrates that systematic benchmarking frameworks can identify recurring failure patterns in AI systems, with studies showing that standardized evaluation helps expose system limitations and coordination problems, particularly in multi-agent environments where specialized components must work together (Feng et al., 2026).
+Validity arguments for selection benefit from systematic threat intelligence through continuous evidence that detection strategies establish authenticity prerequisites without compromising the relevant sources of validity evidence. Organizations must verify that assessment modifications designed to expose AI limitations preserve content-related and criterion-related evidence as those modifications evolve in response to new fraud techniques. Systematic documentation enables organizations to confirm that cognitive load variations, multi-modal requirements, and environmental adaptations successfully distinguish synthetic entities from authentic candidates while avoiding construct-irrelevant variance or adverse impact on legitimate applicants. The empirical foundation created through systematic learning enables organizations to demonstrate that authenticity verification enhances rather than compromises assessment integrity, establishing prerequisite controls that enable traditional validity frameworks to operate effectively while maintaining the psychometric rigor essential for defensible selection decisions.
+Malicious synthetic identity fraud presents fundamentally different learning requirements where threats evolve through technological advancement rather than gradual environmental change, detection requires technical expertise about AI limitations that most organizations lack, and the cost of learning failure through successful fraud can be catastrophic. Organizations that systematically collect and analyze fraud attempts can identify exploitable patterns in AI technical limitations that isolated incident responses miss. Technical research reveals specific failure modes that organizations can learn to detect through systematic analysis (Rhaiem & Amara, 2021). AI sensitivity to environmental variations, and organizations that systematically test and document these sensitivities across multiple fraud attempts can develop more effective environmental stress testing, while ad hoc responses fail to accumulate this knowledge (Pandhare, 2024). Systematic threat intelligence processes enable organizations to accumulate technical knowledge about AI limitations across multiple malicious synthetic identity fraud attempts, creating several specific advantages that isolated incident responses cannot achieve. For example, multiple incidents showing slight vocal synthesis artifacts under specific acoustic conditions become recognizable patterns rather than random technical glitches when analyzed systematically. Organizations can also systematically monitor the evolution of AI fraud capabilities and corresponding detection opportunities, enabling rapid identification of new AI tools' specific limitations and vulnerabilities as they emerge.
+Systematic documentation of AI failure modes enables more accurate detection because organizations develop expertise in distinguishing AI artifacts from normal technical variations or candidate nervousness, reducing false negative rates over time (Raji et al., 2020). High-reliability organizing principles support systematic learning through preoccupation with failure and institutional memory development. Organizations implementing high-reliability perspectives treat each verification episode as a learning opportunity, documenting failure modes, analyzing detection effectiveness, and updating protocols based on accumulated evidence. The preoccupation with the failure principle drives continuous questioning of whether current detection strategies remain effective against evolving AI capabilities.
+Validity arguments benefit from systematic learning through continuous evidence that detection strategies maintain content-related and criterion-related validity evidence as they evolve. Organizations can verify that assessment modifications designed to expose AI limitations do not introduce bias or reduce predictive accuracy through systematic effectiveness tracking. The empirical foundation enables organizations to demonstrate that fraud detection maintains assessment integrity rather than compromising selection quality. Based on the above discussion, we propose:
+Proposition 3
+
+Organizations employing structured learning systems dedicated to capturing, analyzing, integrating, and disseminating knowledge about malicious synthetic identity fraud will exhibit significantly greater improvements over time in the effectiveness of their detection and prevention mechanisms.
+3.4. Proposition 4: Human-AI integration
+Current approaches to AI fraud detection in hiring contexts typically emphasize either human judgment or automated technological solutions as primary verification mechanisms (Hunkenschroer & Kriebitz, 2023; Hunkenschroer & Luetge, 2022). Human-AI integration optimizes both authenticity verification (prerequisite control through automated technical artifact detection) and psychometric validity (human contextual interpretation ensuring construct measurement remains uncontaminated by fraud detection requirements). Research on human versus AI deception detection capabilities reveals that both approaches possess distinct but complementary strengths and limitations that, when strategically integrated, create superior authenticity verification capabilities exceeding either approach operating independently.
+Research by Groh, Epstein, Firestone, and Picard (2022) provides empirical evidence about human-AI deepfake detection capabilities, demonstrating that a system integrating human and model predictions is more accurate than either humans or the model alone. Research reveals that inaccurate model predictions often lead humans to incorrectly update their responses—participants became 2.7% less accurate on average when the model made incorrect predictions. The study found that humans possess particular strengths in specialized visual processing of faces and contextual reasoning. Specifically, when specialized face processing was obstructed (through video inversion, misalignment, or occlusion), human performance decreased significantly, while the AI model was largely unaffected by these manipulations. Additionally, humans demonstrated superior performance on videos of political leaders, likely due to their ability to incorporate contextual knowledge and critically evaluate whether such figures would realistically make the statements shown, while the AI model failed confidently on these same videos.
+The theoretical foundation for complementary capability integration rests on documented differences between human and AI information processing that create opportunities for strategic combination. Humans excel at contextual interpretation, dynamic interaction adaptation, and multi-modal pattern recognition that enables identification of subtle inconsistencies across communication channels (Hemmer, Schemmer, Kühl, Vössing, & Satzger, 2025). Research shows that human assessors naturally focus on cross-modal consistency indicators that automated systems struggle to evaluate, particularly when fraud attempts exhibit sophisticated technical execution but subtle behavioral or contextual anomalies (Henle, Dineen, & Duffy, 2019). Human assessors then leverage automated findings to conduct targeted investigations using their superior capabilities in dynamic interaction, contextual interpretation, and adaptive questioning.
+Research supports synergistic effects through evidence that optimal fraud detection requires both technical analysis and contextual interpretation. AI-generated content detection relies on identifying linguistic features like lower perplexity and greater lexical diversity that automated analysis can quantify, combined with recognizing overly formal or polished tone and lack of personal anecdotes or idiosyncratic phrasing that human assessors interpret more effectively through contextual knowledge and social intelligence (Gotoman, Luna, Sangria, Santiago Jr., & Barbuco, 2025; Terčon & Dobrovoljc, 2025).
+Validity arguments benefit from human-AI integration through strengthened content-related, response-process, and criterion-related validity evidence while authenticity prerequisites are established. Automated technical analysis identifies construct-irrelevant artifacts introduced by AI synthesis without requiring human assessors to develop specialized technical expertise in deepfake detection or forensic analysis. Human judgment maintains focus on assessing authentic candidate KSAOs through contextual interpretation and adaptive questioning, while automated systems handle technical verification requirements. This division preserves assessment validity by preventing authenticity verification requirements from contaminating construct measurement—human assessors can focus cognitive resources on evaluating candidates' job-relevant competencies while technical systems establish that authentic human candidates are being assessed.
+Personnel assessment maintains validity through human-AI integration by ensuring that authenticity verification enhancements do not compromise psychometric assessment objectives. Human oversight ensures that fraud detection strategies remain aligned with measuring authentic candidate qualifications rather than becoming disconnected technical exercises that introduce construct-irrelevant variance. Automated support enables human assessors to focus on validity-critical evaluation rather than technical artifact identification, preserving the assessment relationship between evaluator and candidate while technical systems operate in the background to establish foundational prerequisites. The integration creates detection capabilities superior to either approach independently because automated analysis handles computational tasks where machines demonstrate comparative advantage, while human judgment addresses adaptive and contextual challenges where human cognition excels, all while maintaining the psychometric integrity essential for valid selection decisions. Based on the above discussion, we propose:
+Proposition 4
+
+Verification systems in hiring that are designed based on socio-technical principles to augment human judgment with integrated technological tools will demonstrate significantly higher accuracy and effectiveness in detecting malicious synthetic identity fraud.
+4. Discussion and conclusion
+The primary theoretical contribution of this work lies in establishing authenticity verification as a prerequisite control that enables personnel assessment validity frameworks to operate when sophisticated AI-generated synthetic identities threaten to infiltrate remote hiring processes. Traditional personnel selection assumes that assessment responses originate from authentic human candidates whose future performance can be predicted—an assumption historically satisfied through physical co-presence but now vulnerable in remote contexts. The framework addresses the challenge that synthetic identity fraud poses not by introducing new sources of validity evidence requiring development, but by specifying prerequisite controls that establish the foundational condition under which the unitary validity argument can operate. Drawing upon documented AI technical limitations and high-reliability organizing principles, we develop four propositions that exploit systematic AI constraints—consistency failures, multi-modal coordination difficulties, organizational learning advantages, and human-AI complementarity—to distinguish authentic human candidates from synthetic entities while maintaining the validity evidence and reliability requirements essential for defensible selection decisions.
+Traditional personnel selection assumes that candidates, whether honest or deceptive, operate through human cognitive and behavioral systems. AI-enabled fraud fundamentally alters this assumption by introducing artificial response generation that exhibits systematic technical limitations exploitable through strategic assessment design, representing a qualitative shift in selection challenges that existing theory does not adequately address. In the language of the Standards, what synthetic identity fraud most directly violates is the response-process assumption: the assumption that a candidate's responses are generated by the cognitive and behavioral processes the procedure was designed to elicit (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014). Once that assumption is in doubt, evidence based on test content and on relations to other variables cannot be interpreted in the usual way, regardless of how compelling the score appears on its face.
+Proposition 1 establishes that AI systems' probabilistic reasoning architecture creates systematic consistency vulnerabilities that assessment variation can exploit, providing HRM with specific, actionable detection mechanisms based on technical rather than psychological principles. Proposition 2 demonstrates that AI coordination failures across modalities create multiplicative rather than additive detection opportunities, offering HRM professionals concrete multi-modal assessment strategies grounded in technical research rather than intuitive approaches. Proposition 3 transforms organizational learning theory by focusing specifically on threat intelligence processes designed to exploit evolving AI technical limitations, moving beyond general adaptation principles to systematic capability development for technical fraud detection. Proposition 4 advances human-AI integration theory by establishing complementary capability principles based on documented differences between human contextual intelligence and automated technical analysis, providing HRM with specific guidance for integrating technological tools effectively.
+4.1. Implications for HRM practice
+The theoretical framework carries significant practical implications for HRM professionals who must adapt selection practices to address malicious synthetic identity fraud. Moving beyond traditional background checking requires strategic integration of technical knowledge about AI limitations into standard assessment procedures (Parycek, Schmid, & Novak, 2024). Professional competency evolution becomes essential as HRM professionals require technical literacy about AI fraud mechanisms rather than general deception awareness (Budhwar, Malik, De Silva, & Thevisuthan, 2022). Understanding specific AI technical limitations documented in our propositions, such as consistency failures across contextual reframings, multi-modal coordination constraints, and environmental sensitivity patterns, enables HRM professionals to design assessment modifications that systematically exploit these technical limitations rather than relying on intuitive fraud detection approaches (Pan & Froese, 2023).
+Assessment design changes require HRM professionals to implement specific technical strategies grounded in AI research. Consistency testing across temporal separations and contextual reframings exploits documented AI probabilistic reasoning limitations (Wright, 2025). Multi-modal assessment integration creates systematic coordination challenges for AI synthesis systems while remaining manageable for authentic candidates. Environmental variation in assessment conditions exploits AI sensitivity patterns documented in technical research. Technology integration strategy in personnel selection enables HRM professionals to leverage automated detection tools effectively through complementary capability approaches (Wright, 2025). Rather than replacing human judgment, technological integration provides technical artifact detection that guides human contextual interpretation and adaptive assessment. HRM professionals must understand how to interpret automated findings and translate technical indicators into appropriate assessment modifications.
+Incident response capabilities must incorporate technical analysis protocols that enable systematic learning about AI fraud patterns rather than isolated incident management. HRM professionals need frameworks for documenting AI technical artifacts, coordinating with IT security expertise, and translating technical findings into improved assessment procedures (Tambe, Cappelli, & Yakubovich, 2019). High-reliability organizing principles require establishing cross-functional coordination structures where HR, cybersecurity, legal, and IT functions collaborate systematically rather than responding to crises reactively. Organizations implementing these practices establish standing committees with explicit responsibility for hiring security, develop shared knowledge repositories where technical intelligence informs HR practice, and create joint training programs building mutual understanding across specialized domains.
+4.2. Measurement and implementation challenges
+The framework's technical foundation creates specific measurement challenges that HRM research must address. Operationalizing AI technical limitations requires collaboration with computer science researchers to develop reliable measures of consistency failures, multi-modal coordination problems, and environmental sensitivity patterns that HRM professionals can apply in practice. Validation of technical assessment necessitates rigorous testing of proposed consistency challenges, multi-modal integration approaches, and environmental variation strategies (American Educational Research Association, and American Psychological Association, and National Council on Measurement in Education, 2014; Cronbach & Meehl, 1955; Kane, 2013). Developing standardized protocols for implementing technical detection strategies and measuring their effectiveness across diverse organizational contexts remains a critical research priority.
+Cross-functional integration measurement presents challenges in quantifying effective collaboration between HRM professionals and technical security experts. Traditional HRM metrics may not capture the quality of technical knowledge transfer or the effectiveness of joint analysis protocols essential for systematic threat intelligence. Longitudinal adaptation tracking requires measures that capture organizational learning about evolving AI technical limitations rather than static fraud detection capabilities. Developing metrics for threat intelligence effectiveness, technical knowledge accumulation, and adaptive capability development over time presents methodological challenges requiring innovative approaches.
+The framework's emphasis on technical AI limitation exploitation raises specific ethical considerations that HRM practice must address carefully. Technical assessment modifications must maintain fairness and accessibility while implementing strategies designed to challenge AI coordination capabilities. Consistency testing, multi-modal assessment, and environmental variation must not create disparate impact for human candidates while effectively detecting AI fraud. Organizations must ensure that cognitive load variations, multi-modal requirements, and environmental adaptations remain within reasonable accommodation frameworks that do not disadvantage candidates with disabilities, non-native language speakers, or those with limited technological resources.
+4.3. Limitations and boundary conditions
+The framework's applicability faces several constraints that define its implementation boundaries. Technology evolution sensitivity creates structural challenges where fraud actors can rapidly adopt new AI capabilities while organizations must validate and deploy countermeasures through formal processes (Bello & Olufemi, 2024). The framework's reliance on exploiting current AI limitations means each technical advance potentially invalidates existing detection strategies, creating a cycle where defensive measures consistently lag offensive capabilities. Organizations must recognize that the framework provides principles for continuous adaptation rather than static solutions, requiring ongoing investment in threat intelligence and countermeasure evolution.
+Technical expertise requirements create practical barriers beyond resource constraints. The framework assumes organizations can effectively integrate computer science knowledge with HR practice, but these domains operate through different validation standards and timescales. HR professionals need immediate, reliable guidance while technical research produces probabilistic findings requiring interpretation (Tambe et al., 2019). Knowledge translation challenges limit implementation to organizations with adequate technical support or external expertise. Industry context variation affects implementation through constraints that customization cannot fully address. High-volume recruitment contexts face different feasibility requirements than selective hiring processes. When processing thousands of applications, even highly accurate detection strategies create false positive burdens that may overwhelm human verification capacity. The framework's multi-modal approaches may be economically viable only for organizations with specific risk-to-volume ratios.
+Regulatory environment constraints operate through multiple interacting mechanisms. Privacy regulations limit data collection capabilities, employment law constrains assessment methods, and emerging AI governance frameworks may restrict both detection technologies and their application (Yanamala, 2024). Regulatory layers create compliance complexity that may be prohibitive for smaller organizations or those operating across multiple jurisdictions. Implementation boundaries emerge from organizational capacity and strategic priorities. Many organizations may prefer selective application based on role sensitivity rather than systematic implementation, creating exploitable gaps that sophisticated fraud operations can identify. Cost-benefit calculations vary dramatically across contexts, with organizations facing low-consequence hiring decisions potentially accepting fraud risks rather than investing in sophisticated detection capabilities.
+4.4. Future research directions
+Research priorities emerge from the framework's implementation challenges and theoretical gaps. Empirical validation of technical detection strategies must address the challenge that successful fraud remains undetected, creating systematic bias in validation datasets. Research necessarily studies detected fraud attempts, which may represent less sophisticated efforts than successful infiltrations. Selection bias means validation studies may overestimate detection effectiveness against the most capable threats. Researchers must develop methodologies that account for unknown successful fraud rates and validate detection strategies against increasingly sophisticated test cases that simulate well-resourced threat actors.
+Measurement development confronts the challenge that fraud detection constructs must track evolving technical capabilities, unlike traditional personnel selection constructs that remain relatively stable. Measures validated against current AI limitations may lose validity as technology advances, requiring continuous revalidation cycles that exceed typical research timelines. Developing metrics for consistency testing effectiveness, multi-modal integration quality, and systematic learning capability that remain valid across technological changes requires innovative approaches. Researchers might explore construct stability assessment frameworks that identify core measurement principles robust to technical evolution while enabling operational updates as AI capabilities change.
+Longitudinal studies of organizational learning face challenges that effective threat intelligence may require longer observation periods than research funding cycles typically support. Organizations may need years to develop effective learning systems, while academic research operates on shorter validation timelines. Researchers must examine how organizations develop technical threat intelligence capabilities and optimal knowledge transfer mechanisms between technical and HRM expertise. Collaborative industry-academic partnerships enabling extended observation periods while maintaining research rigor represent promising approaches. Cross-cultural and legal context research must address varying privacy expectations and institutional trust levels that affect both detection strategy acceptance and effectiveness. Verification approaches that function effectively in high-trust contexts may fail in environments where candidates expect institutional skepticism. Research must examine how the framework's technical detection strategies function across different regulatory environments and cultural contexts.
+Integration with emerging AI governance requires ongoing research as AI regulation develops. Organizations must navigate evolving compliance requirements while maintaining detection effectiveness. Research must examine how AI governance frameworks affect HRM practice and fraud detection capabilities, including the interaction between privacy regulations, employment law, and AI-specific governance structures. Knowledge dissemination research must address the tension between advancing detection science and maintaining effectiveness. The research community needs strategies for advancing knowledge while preserving detection effectiveness, potentially through industry consortia, restricted circulation of operational details, or delayed publication of specific technical countermeasures.
+AI use acknowledgement
+The author used Microsoft Copilot to assist with grammar, clarity, and phrasing during manuscript preparation. All conceptual frameworks, theoretical propositions, and scholarly contributions are original work by the author, and any errors are the sole responsibility of the author.
+Declaration of competing interest
+None.
+Acknowledgements
+The author is grateful to the Associate Editor, Dr. Rebecca Hewett, and the anonymous reviewers for their constructive and insightful feedback throughout the review process, which materially strengthened this paper.
+Data availability
+No data was used for the research described in the article.
+References
+Ajder, Patrini, Cavalli and Cullen, 2019
+H. Ajder, G. Patrini, F. Cavalli, L. Cullen
+The state of deepfakes: Landscape, threats, and impact
+Deeptrace (2019)
+Google Scholar
+Alston & Bird, 2025
+LLP. Alston & Bird
+North Korean IT remote worker fraud scheme: Data security and employment law impact (2025 January)
+https://www.alston.com/en/insights/publications/2025/01/north-korea-it-fraud-scheme-data-security-law
+Google Scholar
+American Educational Research Association and American Psychological Association, & National Council on Measurement in Education, 2014
+American Educational Research Association, American Psychological Association, & National Council on Measurement in Education
+Standards for educational and psychological testing
+American Educational Research Association (2014)
+Google Scholar
+An et al., 2024
+S. An, Z. Ma, Z. Lin, N. Zheng, J.-G. Lou, W. Chen
+Make your LLM fully utilize the context
+Advances in Neural Information Processing Systems, 37 (2024), pp. 62160-62188
+View at publisherCrossrefGoogle Scholar
+Baer, Waardenburg and Huysman, 2025
+I. Baer, L. Waardenburg, M. Huysman
+What is augmented? A metanarrative review of AI-based augmentation
+Journal of the Association for Information Systems, 26 (3) (2025), pp. 760-798
+CrossrefView in ScopusGoogle Scholar
+Basch and Melchers, 2021
+J.M. Basch, K.G. Melchers
+The use of technology-mediated interviews and their perception from the organization’s point of view
+International Journal of Selection and Assessment, 29 (3–4) (2021), pp. 495-502
+CrossrefView in ScopusGoogle Scholar
+Bello and Olufemi, 2024
+O.A. Bello, K. Olufemi
+Artificial intelligence in fraud prevention: Exploring techniques and applications challenges and opportunities
+Computer Science & IT Research Journal, 5 (6) (2024), pp. 1505-1520
+Google Scholar
+Berkelaar and Buzzanell, 2015
+B.L. Berkelaar, P.M. Buzzanell
+Online employment screening and digital career capital: Exploring employers’ use of online information for personnel selection
+Management Communication Quarterly, 29 (1) (2015), pp. 84-113
+CrossrefView in ScopusGoogle Scholar
+Binning and Barrett, 1989
+J.F. Binning, G.V. Barrett
+Validity of personnel decisions: A conceptual analysis of the inferential and evidential bases
+Journal of Applied Psychology, 74 (3) (1989), pp. 478-494
+View in ScopusGoogle Scholar
+Birkeland, Manson, Kisamore, Brannick and Smith, 2006
+S.A. Birkeland, T.M. Manson, J.L. Kisamore, M.T. Brannick, M.A. Smith
+A meta-analytic investigation of job applicant faking on personality measures
+International Journal of Selection and Assessment, 14 (4) (2006), pp. 317-335
+CrossrefView in ScopusGoogle Scholar
+Blackburn and Paterson, 2021
+M. Blackburn, A. Paterson
+Giving it a go: Introducing authenticity into human resource management assessments
+Organisation studies and human resource management, Routledge (2021), pp. 51-63
+CrossrefView in ScopusGoogle Scholar
+Brown & Vaishampayan, 2025
+C. Brown, S. Vaishampayan
+Towards evidence-based tech hiring pipelines
+arXiv (2025)
+https://arxiv.org/abs/2504.06387
+Google Scholar
+Brymer, Paraskevas, Josefy and Ellram, 2024
+R. Brymer, J.P. Paraskevas, M. Josefy, L. Ellram
+Pipeline hiring’s effects on the human capital and performance of new recruits
+Strategic Management Journal, 45 (9) (2024), pp. 1822-1850
+CrossrefView in ScopusGoogle Scholar
+Budhwar, Malik, De Silva and Thevisuthan, 2022
+P. Budhwar, A. Malik, M.T. De Silva, P. Thevisuthan
+Artificial intelligence – Challenges and opportunities for international HRM: A review and research agenda
+The International Journal of Human Resource Management, 33 (6) (2022), pp. 1065-1097
+View at publisher
+CrossrefView in ScopusGoogle Scholar
+Chen and Epps, 2020
+S. Chen, J. Epps
+Multimodal coordination measures to understand users and tasks
+ACM Transactions on Computer-Human Interaction, 27 (6) (2020), pp. 1-26
+Google Scholar
+Cizek and Wollack, 2016
+G.J. Cizek, J.A. Wollack
+Handbook of quantitative methods for detecting cheating on tests
+Routledge (2016)
+Google Scholar
+Cronbach and Meehl, 1955
+L.J. Cronbach, P.E. Meehl
+Construct validity in psychological tests
+Psychological Bulletin, 52 (4) (1955), pp. 281-302
+CrossrefView in ScopusGoogle Scholar
+Department of Justice, 2025
+Department of Justice
+Justice Department announces coordinated, nationwide actions to combat north Korean remote information technology workers’ illicit revenue generation schemes (2025)
+https://www.justice.gov/opa/pr/justice-department-announces-coordinated-nationwide-actions-combat-north-korean-remote
+Google Scholar
+DePaulo et al., 2003
+B.M. DePaulo, J.J. Lindsay, B.E. Malone, L. Muhlenbruck, K. Charlton, H. Cooper
+Cues to deception
+Psychological Bulletin, 129 (1) (2003), pp. 74-118
+CrossrefView in ScopusGoogle Scholar
+Educational Testing Service
+Educational Testing Service. (n.d.). GRE General Test at home testing. Retrieved June 10, 2026, from https://www.ets.org/gre/test-takers/general-test/test-day/at-home-test-day.html.
+Google Scholar
+Engemann, 2018
+K.N. Engemann
+Knowledge in high-reliability organizations: A review of interrelated perspectives
+The Routledge companion to risk, crisis and security in business, Routledge (2018), pp. 80-90
+CrossrefView in ScopusGoogle Scholar
+FBI Internet Crime Complaint Center, 2022
+FBI Internet Crime Complaint Center
+Deepfakes and stolen PII utilized to apply for remote work positions (2022)
+https://www.ic3.gov/PSA/2022/PSA220628
+Google Scholar
+Feng et al., 2026
+Z. Feng, R. Xue, L. Yuan, Y. Yu, N. Ding, M. Liu, …, G. Wang
+Multi-agent embodied AI: Advances and future directions
+SCIENCE CHINA Information Sciences, 69 (5) (2026)
+Google Scholar
+Fletcher and Trautrims, 2024
+D. Fletcher, A. Trautrims
+Recruitment deception and the organization of labor for exploitation: A policy–theory synthesis
+Academy of Management Perspectives, 38 (1) (2024), pp. 43-76
+CrossrefView in ScopusGoogle Scholar
+Francis and Michas, 2013
+J.R. Francis, P.N. Michas
+The contagion effect of low-quality audits
+The Accounting Review, 88 (2) (2013), pp. 521-552
+CrossrefView in ScopusGoogle Scholar
+Graduate Management Admission Council
+Graduate Management Admission Council. (n.d.). GMAT exam policies and procedures. Retrieved June 10, 2026, from https://www.mba.com/exams/gmat-exam/register/exam-policies/policies-and-procedures.
+Google Scholar
+Goodfellow, 2014
+I.J. Goodfellow
+On distinguishability criteria for estimating generative models
+arXiv (2014)
+https://arxiv.org/abs/1412.6515
+Google Scholar
+Goretzko and Israel, 2022
+D. Goretzko, L.S.F. Israel
+Pitfalls of machine learning-based personnel selection
+Journal of Personnel Psychology, 21 (1) (2022), pp. 37-47
+CrossrefView in ScopusGoogle Scholar
+Gotoman, Luna, Sangria, Santiago Jr. and Barbuco, 2025
+J.E.J. Gotoman, H.L.T. Luna, J.C.S. Sangria, C.S. Santiago Jr., D.D. Barbuco
+Accuracy and reliability of AI-generated text detection tools: A literature review
+American Journal of IR 4.0 and Beyond, 4 (1) (2025), pp. 1-9
+CrossrefGoogle Scholar
+Groh, Epstein, Firestone and Picard, 2022
+M. Groh, Z. Epstein, C. Firestone, R. Picard
+Deepfake detection by human crowds, machines, and machine-informed crowds
+Proceedings of the National Academy of Sciences of the United States of America, 119 (1) (2022), Article e2110013119
+View in ScopusGoogle Scholar
+Heichler, 2025
+E. Heichler
+Deepfake anxiety in the C-suite
+MIT Sloan Management Review, 66 (2) (2025), p. 6
+Google Scholar
+Hemamou, Guillon, Martin and Clavel, 2023
+L. Hemamou, A. Guillon, J.-C. Martin, C. Clavel
+Multimodal hierarchical attention neural network: Looking for candidates' behaviour which impact recruiter's decision
+IEEE Transactions on Affective Computing, 14 (2) (2023), pp. 969-985
+CrossrefView in ScopusGoogle Scholar
+Hemmer, Schemmer, Kühl, Vössing and Satzger, 2025
+P. Hemmer, M. Schemmer, N. Kühl, M. Vössing, G. Satzger
+Complementarity in human-AI collaboration: Concept, sources, and evidence
+European Journal of Information Systems, 34 (6) (2025), pp. 979-1002
+CrossrefView in ScopusGoogle Scholar
+Henle, Dineen and Duffy, 2019
+C.A. Henle, B.R. Dineen, M.K. Duffy
+Assessing intentional resume deception: Development and nomological network of a resume fraud measure
+Journal of Business and Psychology, 34 (1) (2019), pp. 87-106
+View at publisherCrossrefView in ScopusGoogle Scholar
+Hickman et al., 2022
+L. Hickman, N. Bosch, V. Ng, R. Saef, L. Tay, S.E. Woo
+Automated video interview personality assessments: Reliability, validity, and generalizability investigations
+Journal of Applied Psychology, 107 (8) (2022), pp. 1323-1351
+View at publisherCrossrefView in ScopusGoogle Scholar
+Ho, Powell and Stanley, 2021
+J.L. Ho, D.M. Powell, D.J. Stanley
+The relation between deceptive impression management and employment interview ratings: A meta-analysis
+Canadian Journal of Behavioural Science, 53 (2) (2021), pp. 164-174
+View at publisherCrossrefView in ScopusGoogle Scholar
+Holtrop and Bronzwaer, 2025
+D. Holtrop, R. Bronzwaer
+Validity at risk? The future of generative AI use by candidates in assessments
+International Journal of Selection and Assessment, 34 (1) (2025)
+Google Scholar
+Hu and Connelly, 2021
+X. Hu, B.S. Connelly
+Faking by actual applicants on personality tests: A meta-analysis of within-subjects studies
+International Journal of Selection and Assessment, 29 (3–4) (2021), pp. 412-426
+View at publisherCrossrefView in ScopusGoogle Scholar
+Hunkenschroer & Kriebitz, 2023
+A.L. Hunkenschroer, A. Kriebitz
+Is AI recruiting (un) ethical? A human rights perspective on the use of AI for hiring
+AI and Ethics, 3 (1) (2023), pp. 199-213
+CrossrefGoogle Scholar
+Hunkenschroer & Luetge, 2022
+A.L. Hunkenschroer, C. Luetge
+Ethics of AI-enabled recruiting and selection: A review and research agenda
+Journal of business ethics, 178 (4) (2022), pp. 977-1007
+CrossrefView in ScopusGoogle Scholar
+Jakesch et al., 2023
+M. Jakesch, J.T. Hancock, M. Naaman
+Human heuristics for AI-generated language are flawed
+Proceedings of the National Academy of Sciences, 120 (11) (2023), Article e2208839120
+View in ScopusGoogle Scholar
+Jung, Dai, Liu and Wu, 2024
+J. Jung, J. Dai, B. Liu, Q. Wu
+Artificial intelligence in fracture detection with different image modalities and data types: A systematic review and meta-analysis
+PLOS Digital Health, 3 (1) (2024), Article e0000438
+CrossrefView in ScopusGoogle Scholar
+Kane, 2013
+M.T. Kane
+Validating the interpretations and uses of test scores
+Journal of Educational Measurement, 50 (1) (2013), pp. 1-73, 10.1111/jedm.12000
+View in ScopusGoogle Scholar
+König & Langer, 2022
+C.J. König, M. Langer
+Machine learning in personnel selection
+Handbook of research on artificial intelligence in human resource management, Edward Elgar Publishing (2022), pp. 149-167
+View in ScopusGoogle Scholar
+Kostikova et al., 2026
+A. Kostikova, Z. Wang, D. Bajri, O. Pütz, B. Paaßen, S. Eger
+LLLMs: A data-driven survey of evolving research on limitations of large language models
+ACM Computing Surveys, 58 (11) (2026), pp. 1-33
+CrossrefGoogle Scholar
+Lee, 2021
+I. Lee
+Cybersecurity: Risk management framework and investment cost analysis
+Business Horizons, 64 (5) (2021), pp. 659-671
+View PDF
+View articleView in ScopusGoogle Scholar
+Lewis et al., 2020
+J.K. Lewis, I.E. Toubal, H. Chen, V. Sandesera, M. Lomnitz, Z. Hampel-Arias, …, K. Palaniappan
+Deepfake video detection based on spatial, spectral, and temporal inconsistencies using multimodal deep learning
+2020 IEEE applied imagery pattern recognition workshop (AIPR), IEEE (2020), pp. 1-9
+View in ScopusGoogle Scholar
+Liang, Zhu, Wu and Chen, 2025
+J. Liang, Y. Zhu, J. Wu, C. Chen
+“when I have the advantage, I prefer AI!” the influence of an applicant’s relative advantage on the preference for artificial intelligence decision-making
+Journal of Business and Psychology, 40 (5) (2025), pp. 1209-1229
+CrossrefView in ScopusGoogle Scholar
+Lievens and Dunlop, 2025
+F. Lievens, P.D. Dunlop
+Effects of applicants’ use of generative AI in personnel selection: Towards a more nuanced view?
+International Journal of Selection and Assessment, 33 (1) (2025), Article e12516
+View in ScopusGoogle Scholar
+Liu & Ding, 2025
+W. Liu, N. Ding
+Information integration in large language models is gated by linguistic structural markers
+Proceedings of the 2025 conference on empirical methods in natural language processing (2025 November), pp. 6903-6915
+CrossrefGoogle Scholar
+Messick, 1989
+S. Messick
+Validity
+R.L. Linn (Ed.), Educational measurement (3rd ed.), American Council on Education/Macmillan (1989), pp. 13-103
+Google Scholar
+Messick, 1995
+S. Messick
+Validity of psychological assessment: Validation of inferences from persons' responses and performances as scientific inquiry into score meaning
+American Psychologist, 50 (9) (1995), pp. 741-749
+View in ScopusGoogle Scholar
+Mirowska, 2025
+A. Mirowska
+A consideration of immediate and long-term consequences of generative AI usage in selection
+International Journal of Selection and Assessment, 33 (3) (2025)
+Google Scholar
+Mündler et al., 2023
+N. Mündler, J. He, S. Jenko, M. Vechev
+Self-contradictory hallucinations of large language models: Evaluation, detection and mitigation
+arXiv (2023)
+https://arxiv.org/abs/2305.15852
+Google Scholar
+Munikoti et al., 2026
+S. Munikoti, I. Stewart, S. Horawalavithana, H. Kvinge, T. Emerson, S.E. Thompson, K. Pazdernik
+Generalist multimodal AI: A review of architectures, challenges and opportunities
+Neurocomputing, 676 (2026), p. 132933, 10.1016/j.neucom.2026.132933
+ISSN 0925-2312
+View PDF
+View articleView in ScopusGoogle Scholar
+Nixon and Kerr, 2011
+W.B. Nixon, K. Kerr
+Background screening and investigations: Managing hiring risk from the HR and security perspectives
+Elsevier (2011)
+Google Scholar
+Öhman, 2022
+C. Öhman
+The identification game: Deepfakes and the epistemic limits of identity
+Synthese, 200 (4) (2022), p. 319
+View in ScopusGoogle Scholar
+Pan and Froese, 2023
+Y. Pan, F.J. Froese
+An interdisciplinary review of AI and HRM: Challenges and future directions
+Human Resource Management Review, 33 (1) (2023), Article 100924
+View PDF
+View articleView in ScopusGoogle Scholar
+Pandhare, 2024
+H.V. Pandhare
+Evaluating large language models: Frameworks and methodologies for AI/ML system testing
+International Journal of Scientific Research and Management, 12 (9) (2024), pp. 1467-1486
+CrossrefGoogle Scholar
+Parycek, Schmid and Novak, 2024
+P. Parycek, V. Schmid, A.-S. Novak
+Artificial intelligence (AI) and automation in administrative procedures: Potentials, limitations, and framework conditions
+Journal of the Knowledge Economy, 15 (2) (2024), pp. 8390-8415
+View in ScopusGoogle Scholar
+Patel et al., 2023
+D. Patel, H. Zouaghi, S. Mudur, E. Paquette, S. Laforest, M. Rouillard, T. Popa
+Visual dubbing pipeline with localized lip-sync and two-pass identity transfer
+Computers & Graphics, 110 (2023), pp. 19-27
+View PDF
+View articleView in ScopusGoogle Scholar
+Raji et al., 2020
+I.D. Raji, A. Smart, R.N. White, M. Mitchell, T. Gebru, B. Hutchinson, …, P. Barnes
+Closing the AI accountability gap: Defining an end-to-end framework for internal algorithmic auditing
+Proceedings of the 2020 conference on fairness, accountability, and transparency, ACM (2020), pp. 33-44
+CrossrefView in ScopusGoogle Scholar
+Rhaiem and Amara, 2021
+K. Rhaiem, N. Amara
+Learning from innovation failures: A systematic review of the literature and research agenda
+Review of Managerial Science, 15 (2) (2021), pp. 189-234
+CrossrefView in ScopusGoogle Scholar
+Robie, Wingate, Baytalskaya and Butera, 2026
+C. Robie, T.G. Wingate, N. Baytalskaya, H. Butera
+Candidate generative AI use in pre-hire employment assessments: Self-reported incidence and the impact of warnings
+International Journal of Selection and Assessment, 34 (2) (2026)
+Google Scholar
+Sackett, Lievens, Van Iddekinge and Kuncel, 2017
+P.R. Sackett, F. Lievens, C.H. Van Iddekinge, N.R. Kuncel
+Individual differences and their measurement: A review of 100 years of research
+Journal of Applied Psychology, 102 (3) (2017), pp. 254-273
+CrossrefView in ScopusGoogle Scholar
+Sackett, Zhang, Berry and Lievens, 2022
+P.R. Sackett, C. Zhang, C.M. Berry, F. Lievens
+Revisiting meta-analytic estimates of validity in personnel selection: Addressing systematic overcorrection for restriction of range
+Journal of Applied Psychology, 107 (11) (2022), pp. 2040-2068
+CrossrefView in ScopusGoogle Scholar
+Salgado, 2016
+J.F. Salgado
+A theoretical model of psychometric effects of faking on assessment procedures: Empirical findings and implications for personality at work
+International Journal of Selection and Assessment, 24 (3) (2016), pp. 209-228
+CrossrefView in ScopusGoogle Scholar
+Schmitt and Chan, 1998
+N. Schmitt, D. Chan
+Personnel selection: A theoretical approach
+Sage (1998)
+Google Scholar
+Schneider, Meske and Kuss, 2024
+J. Schneider, C. Meske, P. Kuss
+Foundation models: A new paradigm for artificial intelligence
+Business & Information Systems Engineering, 66 (2) (2024), pp. 221-231
+CrossrefView in ScopusGoogle Scholar
+Schulze Buschoff, Akata, Bethge and Schulz, 2025
+L.M. Schulze Buschoff, E. Akata, M. Bethge, E. Schulz
+Visual cognition in multimodal large language models
+Nature Machine Intelligence, 7 (1) (2025), pp. 96-106
+CrossrefView in ScopusGoogle Scholar
+Shao, Wu and Liu, 2023
+R. Shao, T. Wu, Z. Liu
+Detecting and grounding multi-modal media manipulation
+Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, IEEE (2023), pp. 6904-6913
+CrossrefView in ScopusGoogle Scholar
+Society for Industrial and Organizational Psychology, 2018
+Society for Industrial and Organizational Psychology
+Principles for the validation and use of personnel selection procedures (5th ed.)
+Industrial and Organizational Psychology, 11 (S1) (2018), pp. 1-97
+Google Scholar
+Son, 2025
+H. Son
+Fake job seekers are flooding U.S. companies that are hiring for remote positions, tech CEOs say
+CNBC (2025, April 8)
+https://www.cnbc.com/2025/04/08/fake-job-seekers-use-ai-to-interview-for-remote-jobs-tech-ceos-say.html
+Google Scholar
+Tambe, Cappelli and Yakubovich, 2019
+P. Tambe, P. Cappelli, V. Yakubovich
+Artificial intelligence in human resources management: Challenges and a path forward
+California Management Review, 61 (4) (2019), pp. 15-42
+CrossrefView in ScopusGoogle Scholar
+Terčon & Dobrovoljc, 2025
+L. Terčon, K. Dobrovoljc
+Linguistic characteristics of AI-generated text: A survey
+arXiv (2025)
+https://arxiv.org/abs/2510.05136
+Google Scholar
+Tippins, Oswald and McPhail, 2021
+N.T. Tippins, F.L. Oswald, S.M. McPhail
+Scientific, legal, and ethical concerns about AI-based personnel selection tools: A call to action
+Personnel Assessment and Decisions, 7 (2) (2021), Article 1
+Google Scholar
+Tschang and Almirall, 2021
+F.T. Tschang, E. Almirall
+Artificial intelligence as augmenting automation: Implications for employment
+Academy of Management Perspectives, 35 (4) (2021), pp. 642-659
+CrossrefView in ScopusGoogle Scholar
+Uittenhove, Shahreza, Marcel and Ramon, 2025
+K. Uittenhove, H.O. Shahreza, S. Marcel, M. Ramon
+Synthetic and natural face identity processing share common mechanisms
+Computers in Human Behavior Reports, 17 (2025), Article 100563
+View PDF
+View articleView in ScopusGoogle Scholar
+Van Iddekinge, Arnold, Aguinis, Lang and Lievens, 2023
+C.H. Van Iddekinge, J.D. Arnold, H. Aguinis, J.W.B. Lang, F. Lievens
+Work effort: A conceptual and meta-analytic review
+Journal of Management, 49 (1) (2023), pp. 125-157
+CrossrefView in ScopusGoogle Scholar
+Vrij, Hartwig and Granhag, 2019
+A. Vrij, M. Hartwig, P.A. Granhag
+Reading lies: Nonverbal communication and deception
+Annual Review of Psychology, 70 (2019), pp. 295-317
+CrossrefView in ScopusGoogle Scholar
+Weick and Sutcliffe, 2015
+K.E. Weick, K.M. Sutcliffe
+Managing the unexpected: Sustained performance in a complex world
+(3rd ed.), Wiley (2015)
+Google Scholar
+Wright, 2025
+C.S. Wright
+Beyond prediction: Structuring epistemic integrity in artificial reasoning systems
+SSRN (2025), 10.2139/ssrn.5310470
+Google Scholar
+Yanamala, 2024
+K.K.R. Yanamala
+Transparency, privacy, and accountability in AI-enhanced HR processes
+Journal of Advanced Computing Systems, 3 (3) (2024), pp. 10-18
+Google Scholar
+Zhang, Van Iddekinge, Ployhart, Arnold and Jordan, 2023
+L. Zhang, C.H. Van Iddekinge, R.E. Ployhart, J.D. Arnold, S.L. Jordan
+The definition and measurement of human capital resources: A content and meta-analytic review
+Journal of Applied Psychology, 108 (9) (2023), pp. 1486-1514
+View at publisherCrossrefView in ScopusGoogle Scholar
+Zhou, Wang and Chen, 2023
+Y. Zhou, L. Wang, W. Chen
+The dark side of AI-enabled HRM on employees based on AI algorithmic features
+Journal of Organizational Change Management, 36 (7) (2023), pp. 1222-1241
+View articleCrossrefView in ScopusGoogle Scholar

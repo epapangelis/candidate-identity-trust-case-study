@@ -1,0 +1,2234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Candidate Identity Trust in Workable PRD</title>
+  <meta name="description" content="Product Requirements Document. Candidate Identity Trust in Workable.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --surface-warm: var(--surface);
+      --fg: #000000;
+      --fg-2: #262626;
+      --muted: #737373;
+      --meta: #a3a3a3;
+      --border: #e5e5e5;
+      --border-soft: var(--border);
+      --accent: #000000;
+      --accent-on: #ffffff;
+      --accent-hover: #262626;
+      --accent-active: #404040;
+      --success: #16a34a;
+      --warn: #eab308;
+      --danger: #dc2626;
+      --font-display: "SF Pro Rounded", system-ui, -apple-system, system-ui;
+      --font-body: ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 18px;
+      --text-xl: 24px;
+      --text-2xl: 30px;
+      --text-3xl: 36px;
+      --text-4xl: 48px;
+      --leading-body: 1.5;
+      --leading-tight: 1;
+      --tracking-display: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --section-y-desktop: 112px;
+      --section-y-tablet: 88px;
+      --section-y-phone: 48px;
+      --radius-sm: 9999px;
+      --radius-md: 12px;
+      --radius-lg: 9999px;
+      --radius-pill: 9999px;
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);
+      --elev-raised: 0 0 0 1px var(--border);
+      --focus-ring: 0 0 0 3px color-mix(in oklab, #3b82f6, transparent 50%);
+      --motion-fast: 100ms;
+      --motion-base: 140ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1280px;
+      --container-gutter-desktop: 24px;
+      --container-gutter-tablet: 16px;
+      --container-gutter-phone: 12px;
+    }
+
+    /* Reset (minimal) */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout primitives. Sections carry one-sided spacing so the gap between two sections is a single section-y. */
+    .container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-gutter-desktop);
+    }
+
+    section {
+      padding-block-start: var(--section-y-desktop);
+    }
+
+    .doc {
+      max-width: 1024px;
+      margin-inline: auto;
+    }
+
+    @media (max-width: 1023px) {
+      .container {
+        padding-inline: var(--container-gutter-tablet);
+      }
+
+      section {
+        padding-block-start: var(--section-y-tablet);
+      }
+    }
+
+    @media (max-width: 639px) {
+      .container {
+        padding-inline: var(--container-gutter-phone);
+      }
+
+      section {
+        padding-block-start: var(--section-y-phone);
+      }
+    }
+
+    /* Navigation: transparent on white, text links, pill action */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      padding-block: var(--space-5);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 500;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: var(--tracking-display);
+    }
+
+    .nav-brand svg {
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-5);
+    }
+
+    .nav-links a {
+      color: var(--fg);
+      font-size: var(--text-base);
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .nav-signin {
+      color: var(--fg);
+      font-size: var(--text-base);
+      text-decoration: none;
+    }
+
+    .nav .btn {
+      gap: 0;
+    }
+
+    .nav-brand,
+    .nav .btn {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1023px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 639px) {
+
+      .nav-signin,
+      .btn-extra {
+        display: none;
+      }
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-display);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-display);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: var(--text-4xl);
+      color: var(--fg);
+      text-wrap: balance;
+    }
+
+    h2 {
+      font-size: var(--text-3xl);
+      color: var(--fg);
+      line-height: 1.11;
+      text-wrap: balance;
+      scroll-margin-top: 136px;
+    }
+
+    h3 {
+      font-size: var(--text-xl);
+      font-weight: 400;
+      line-height: 1.33;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: var(--text-lg);
+      font-weight: 500;
+      line-height: 1.56;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding-inline-start: var(--space-5);
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--fg-2);
+    }
+
+    .lead {
+      font-size: var(--text-lg);
+      color: var(--muted);
+      line-height: 1.56;
+    }
+
+    .body-muted {
+      color: var(--muted);
+    }
+
+    .body-sm {
+      font-size: var(--text-sm);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      font-weight: 400;
+    }
+
+    .eyebrow::first-letter {
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1023px) {
+      h1 {
+        font-size: var(--text-3xl);
+      }
+    }
+
+    @media (max-width: 639px) {
+      h1 {
+        font-size: var(--text-2xl);
+      }
+
+      h2 {
+        font-size: var(--text-2xl);
+      }
+    }
+
+    /* Buttons (every interactive radius is pill) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 10px var(--space-6);
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: var(--text-base);
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: inherit;
+      text-decoration: none;
+      transition:
+        background-color var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard),
+        border-color var(--motion-fast) var(--ease-standard);
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-on);
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-primary:active {
+      background: var(--accent-active);
+      border-color: var(--accent-active);
+    }
+
+    .btn-gray {
+      background: var(--border);
+      color: var(--fg-2);
+      border-color: var(--border);
+    }
+
+    .btn-gray:hover {
+      background: color-mix(in oklab, var(--border), var(--fg) 6%);
+      border-color: color-mix(in oklab, var(--border), var(--fg) 6%);
+    }
+
+    .btn-outline {
+      background: var(--bg);
+      color: var(--fg-2);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--surface);
+    }
+
+    /* Cards (the only non-pill radius) */
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .card-soft {
+      background: var(--surface);
+    }
+
+    .card-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-on);
+    }
+
+    .card-accent p:not(.eyebrow) {
+      font-size: var(--text-lg);
+      line-height: 1.56;
+    }
+
+    .card-accent .eyebrow,
+    .card-accent .cite {
+      color: var(--meta);
+    }
+
+    /* Tag pills */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px var(--space-3);
+      border-radius: var(--radius-pill);
+      background: var(--border);
+      color: var(--fg-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .tag-outline {
+      background: var(--bg);
+      color: var(--muted);
+      box-shadow: var(--elev-ring);
+    }
+
+    .tag-label {
+      margin-inline-end: var(--space-2);
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    /* Links */
+    a.text-link {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    a.text-link:hover {
+      border-bottom-color: var(--fg);
+    }
+
+    a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: var(--radius-pill);
+    }
+
+    /* Hero: centered single column */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-6);
+    }
+
+    .hero h1 {
+      max-width: 18ch;
+    }
+
+    .hero .tag-row {
+      justify-content: center;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Contents: a bordered 12px container, like the terminal block */
+    .contents {
+      width: min(880px, 100%);
+      margin-block-start: var(--space-6);
+      padding: var(--space-6) var(--space-8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: start;
+    }
+
+    .contents ol {
+      list-style: none;
+      margin: var(--space-3) 0 0;
+      padding: 0;
+      columns: 2;
+      column-gap: var(--space-12);
+    }
+
+    .contents li {
+      break-inside: avoid;
+    }
+
+    .contents a {
+      display: grid;
+      grid-template-columns: var(--space-8) minmax(0, 1fr);
+      padding-block: 6px;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .contents-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 2;
+      color: var(--muted);
+    }
+
+    .contents-title {
+      border-bottom: 1px solid transparent;
+    }
+
+    .contents a:hover .contents-title {
+      border-bottom-color: var(--fg);
+    }
+
+    @media (max-width: 639px) {
+      .contents {
+        padding: var(--space-5);
+      }
+
+      .contents ol {
+        columns: 1;
+      }
+    }
+
+    /* Sections */
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-block-end: var(--space-8);
+    }
+
+    .section-head h2 {
+      max-width: 22ch;
+    }
+
+    /* Reading flow */
+    .flow>*+* {
+      margin-block-start: var(--space-4);
+    }
+
+    .flow>.table-card,
+    .flow>.card,
+    .flow>.sources,
+    .flow>.table-card+*,
+    .flow>.card+* {
+      margin-block-start: var(--space-6);
+    }
+
+    .flow>.epic+.epic {
+      margin-block-start: var(--space-4);
+    }
+
+    .flow>h4:not(:first-child) {
+      margin-block-start: var(--space-8);
+    }
+
+    .flow>h3:not(:first-child) {
+      margin-block-start: var(--space-12);
+    }
+
+    .flow>p,
+    .flow>ul,
+    .flow>ol,
+    .flow>h3,
+    .flow>h4 {
+      max-width: 68ch;
+    }
+
+    .flow>.card {
+      max-width: 76ch;
+    }
+
+    .flow li+li {
+      margin-block-start: var(--space-2);
+    }
+
+    .flow li::marker {
+      color: var(--muted);
+    }
+
+    .statement {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: var(--tracking-display);
+      text-wrap: balance;
+    }
+
+    .flow>.statement {
+      max-width: 30ch;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    /* Coded items: assumptions, hypotheses, research needs */
+    .flow>.coded-list {
+      list-style: none;
+      padding: 0;
+      max-width: 76ch;
+    }
+
+    .flow .coded-list li+li {
+      margin-block-start: var(--space-3);
+    }
+
+    .coded {
+      display: grid;
+      grid-template-columns: var(--space-12) minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+    }
+
+    .coded .tag {
+      justify-self: start;
+    }
+
+    /* Source keys */
+    .cite {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .cite a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .cite a:hover {
+      color: var(--fg);
+    }
+
+    .card-accent .cite a:hover {
+      color: var(--accent-on);
+    }
+
+    /* Tables: hairline rows inside a bordered 12px container */
+    .table-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: var(--text-sm);
+      line-height: 1.43;
+    }
+
+    th {
+      padding: var(--space-3) var(--space-4);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-align: start;
+      vertical-align: bottom;
+    }
+
+    td {
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--fg-2);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td:first-child {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    th:first-child {
+      width: 20%;
+    }
+
+    table.cols-3 th:first-child {
+      width: 24%;
+    }
+
+    table.wide-first th:first-child {
+      width: 42%;
+    }
+
+    table.wide-first td:first-child {
+      font-weight: 400;
+    }
+
+    /* Evidence strength: filled and hollow dots */
+    .rating {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .pips {
+      display: inline-flex;
+      gap: var(--space-1);
+    }
+
+    .pips i {
+      width: 7px;
+      height: 7px;
+      border: 1px solid var(--meta);
+      border-radius: var(--radius-pill);
+    }
+
+    .pips i.on {
+      border-color: var(--fg);
+      background: var(--fg);
+    }
+
+    .rating-note {
+      display: block;
+      margin-block-start: var(--space-1);
+      color: var(--muted);
+    }
+
+    /* Epics */
+    .epic-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2) var(--space-4);
+    }
+
+    .epic li {
+      color: var(--fg-2);
+    }
+
+    /* Sources */
+    .flow>.sources {
+      list-style: none;
+      max-width: 880px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .flow .sources li {
+      display: grid;
+      grid-template-columns: var(--space-12) minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+      margin: 0;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 104px;
+    }
+
+    .flow .sources li:last-child {
+      border-bottom: 0;
+    }
+
+    .sources li:target {
+      background: var(--surface);
+    }
+
+    .sources .tag {
+      justify-self: start;
+    }
+
+    .sources .src-title a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .src-title {
+      display: block;
+    }
+
+    .src-file {
+      display: block;
+      margin-block-start: var(--space-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.63;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    /* Footer */
+    .footnote {
+      margin-block-start: var(--section-y-tablet);
+      padding-block: var(--space-6) var(--space-12);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: var(--text-sm);
+    }
+
+    /* Phone: tables become stacked records */
+    @media screen and (max-width: 639px) {
+      .table-card {
+        overflow: visible;
+      }
+
+      table,
+      tbody,
+      tr,
+      td {
+        display: block;
+      }
+
+      thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+      }
+
+      tr {
+        padding: var(--space-4);
+        border-bottom: 1px solid var(--border);
+      }
+
+      tbody tr:last-child {
+        border-bottom: 0;
+      }
+
+      td {
+        padding: 0;
+        border: 0;
+      }
+
+      td+td {
+        margin-block-start: var(--space-3);
+      }
+
+      td:first-child,
+      table.wide-first td:first-child {
+        font-size: var(--text-base);
+        font-weight: 500;
+      }
+
+      td:not(:first-child)::before {
+        content: attr(data-label);
+        display: block;
+        margin-block-end: var(--space-1);
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      .sources li,
+      .coded {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
+      }
+    }
+
+    /* Print: the page prints as a paginated A4 document */
+    @page {
+      size: A4;
+      margin: 16mm 16mm 18mm;
+
+      @bottom-left {
+        content: "Candidate Identity Trust in Workable \00B7  Product Requirements Document";
+        font-family: var(--font-body);
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      @bottom-right {
+        content: counter(page) " / " counter(pages);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--muted);
+      }
+    }
+
+    @media print {
+      html {
+        zoom: 0.8;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: none;
+        padding-inline: 0;
+      }
+
+      .nav,
+      .hero-actions,
+      .footnote {
+        display: none;
+      }
+
+      section {
+        padding-block-start: var(--space-12);
+      }
+
+      .hero-section {
+        padding-block-start: 0;
+      }
+
+      h1 {
+        font-size: var(--text-4xl);
+      }
+
+      .section-head {
+        margin-block-end: var(--space-6);
+        break-inside: avoid;
+      }
+
+      .eyebrow {
+        break-after: avoid;
+      }
+
+      .table-card,
+      .flow>.sources {
+        overflow: visible;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
+
+      th:first-child {
+        border-top-left-radius: calc(var(--radius-md) - 1px);
+      }
+
+      th:last-child {
+        border-top-right-radius: calc(var(--radius-md) - 1px);
+      }
+
+      h2,
+      h3,
+      h4,
+      .section-head,
+      .statement {
+        break-after: avoid;
+      }
+
+      tr,
+      li,
+      .card {
+        break-inside: avoid;
+      }
+
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="nav" aria-label="Primary">
+      <nav class="nav-links" aria-label="Sections"><a
+          href="#evidence-assumptions-hypotheses-research-needs">Evidence</a><a
+          href="#recommendation-and-trade-offs">Recommendation</a><a href="#scope-and-phased-delivery">Phases</a><a
+          href="#success-metrics">Metrics</a></nav>
+      <span class="nav-spacer"></span>
+      <div class="nav-actions"><a href="#sources" class="nav-signin">Sources</a><button type="button"
+          class="btn btn-outline" onclick="window.print()">Print<span class="btn-extra">&nbsp;or save
+            PDF</span></button></div>
+    </header>
+    <main>
+      <section class="hero-section" aria-labelledby="doc-title">
+        <div class="hero">
+          <p class="eyebrow">Product Requirements Document</p>
+          <h1 id="doc-title">Candidate Identity Trust in Workable</h1>
+          <div class="hero-actions"><a class="btn btn-primary" href="#recommendation-and-trade-offs">Read the
+              recommendation</a><a class="btn btn-gray" href="#evidence-assumptions-hypotheses-research-needs">See the
+              evidence</a></div>
+          <nav class="contents" aria-label="Contents">
+            <p class="eyebrow">Contents</p>
+            <ol>
+              <li><a href="#summary"><span class="contents-num"></span><span><span
+                      class="contents-title">Summary</span></span></a></li>
+              <li><a href="#key-terms-manual-and-automated-signals"><span class="contents-num"></span><span><span
+                      class="contents-title">Key terms: manual and automated signals</span></span></a></li>
+              <li><a href="#problem-and-scope"><span class="contents-num">01</span><span><span
+                      class="contents-title">Problem and scope</span></span></a></li>
+              <li><a href="#types-of-fraud-and-which-are-in-scope"><span class="contents-num">02</span><span><span
+                      class="contents-title">Types of fraud and which are in scope</span></span></a></li>
+              <li><a href="#users-use-cases-and-workflow-points"><span class="contents-num">03</span><span><span
+                      class="contents-title">Users, use cases, and workflow points</span></span></a></li>
+              <li><a href="#evidence-assumptions-hypotheses-research-needs"><span
+                    class="contents-num">04</span><span><span class="contents-title">Evidence, assumptions, hypotheses,
+                      research needs</span></span></a></li>
+              <li><a href="#competitive-analysis"><span class="contents-num">05</span><span><span
+                      class="contents-title">Competitive analysis</span></span></a></li>
+              <li><a href="#product-approaches-considered"><span class="contents-num">06</span><span><span
+                      class="contents-title">Product approaches considered</span></span></a></li>
+              <li><a href="#recommendation-and-trade-offs"><span class="contents-num">07</span><span><span
+                      class="contents-title">Recommendation and trade-offs</span></span></a></li>
+              <li><a href="#scope-and-phased-delivery"><span class="contents-num">08</span><span><span
+                      class="contents-title">Scope and phased delivery</span></span></a></li>
+              <li><a href="#epics-and-user-stories"><span class="contents-num">09</span><span><span
+                      class="contents-title">Epics and user stories</span></span></a></li>
+              <li><a href="#success-metrics"><span class="contents-num">10</span><span><span
+                      class="contents-title">Success metrics</span></span></a></li>
+              <li><a href="#risks-dependencies-and-open-questions"><span class="contents-num">11</span><span><span
+                      class="contents-title">Risks, dependencies, and open questions</span></span></a></li>
+              <li><a href="#sources"><span class="contents-num"></span><span><span
+                      class="contents-title">Sources</span></span></a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+      <div class="doc">
+
+        <section aria-labelledby="summary">
+          <div class="section-head">
+            <p class="eyebrow">Overview</p>
+            <h2 id="summary">Summary</h2>
+          </div>
+          <div class="flow">
+            <p>An application no longer guarantees that a real person applied once, under their own name.
+              Remote hiring removes the face-to-face meeting, and generative AI lets anyone produce polished
+              applications in volume.
+              <span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s10">S10</a>]</span>.
+            </p>
+            <div class="card card-accent">
+              <p class="eyebrow">Recommendation</p>
+              <p>Add identity trust to the Workable pipeline one layer at a time, with people making every decision.
+                Phase 1 puts automated identity risk signals, with their reasons, on each application, and gives
+                recruiters a place to log what they notice themselves. Phase 2 permits employers request identity
+                verification from a partner service at a stage they choose. Phase 3 keeps the verified identity with the
+                candidate up to offer and onboarding. Workable raises the concern and explains it. Recruiters decide.
+                Nobody is rejected automatically.</p>
+            </div>
+            <div class="card card-soft">
+              <p class="eyebrow">First Target</p>
+              <p>Recruiters overwhelmed by applications for remote roles, mostly from job boards. Every avoided
+                interview saves more time.</p>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="key-terms-manual-and-automated-signals">
+          <div class="section-head">
+            <p class="eyebrow">Definitions</p>
+            <h2 id="key-terms-manual-and-automated-signals">Key terms: manual and automated signals</h2>
+          </div>
+          <div class="flow">
+            <p>A <strong>signal</strong> is any observation that raises or lowers doubt about whether an applicant is
+              who they say they are. No signal proves anything alone, and the product never acts on one in isolation
+              <span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s9">S9</a>]</span>. Signals come from two
+              places. <strong>Manual signals</strong> are what a recruiter or interviewer notices and judges during a
+              screening call or interview. <strong>Automated signals</strong> are checks that Workable’s system runs on
+              application data and its metadata.
+            </p>
+            <h3 id="manual-signals-recruiters-use-today">Manual signals recruiters use today</h3>
+            <div class="table-card">
+              <table class="cols-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Group</th>
+                    <th scope="col">What the recruiter notices</th>
+                    <th scope="col">Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Group">Face and voice on video</td>
+                    <td data-label="What the recruiter notices">Facial movement that looks unnatural, speech slightly
+                      out of step with the lips, blur or flicker around the jawline and hairline, an expression that
+                      seems off, such as a smile that never reaches the eyes</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s8">S8</a>, <a
+                          href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Lighting</td>
+                    <td data-label="What the recruiter notices">Shadows that do not follow the head, skin tone that
+                      shifts as the person turns, a face lit differently from the room around it</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Camera reluctance</td>
+                    <td data-label="What the recruiter notices">Keeps the camera off, or declines to change the angle,
+                      turn sideways, or show the full face. Profile views are harder for a deepfake to hold</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s8">S8</a>, <a
+                          href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Depth of experience</td>
+                    <td data-label="What the recruiter notices">Cannot talk through a real project: why they decided as
+                      they did, which alternatives they weighed, what limits they faced, what went wrong. Offers
+                      polished generalities in place of named tools, team dynamics, and results</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s2">S2</a>, <a href="#src-s8">S8</a>, <a
+                          href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Unplanned questions</td>
+                    <td data-label="What the recruiter notices">Hesitates over easy local questions, such as today’s
+                      weather or the nearest lunch spot to their stated office, which someone actually there answers at
+                      once</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a
+                          href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Delivery</td>
+                    <td data-label="What the recruiter notices">Answers that sound rehearsed, with no pauses, filler
+                      words, or self-corrections. Vagueness when pressed for detail, for example naming a data migration
+                      but not its source system, target, or team size. Eyes that seem to follow a script off screen,
+                      especially on technical questions</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s8">S8</a>, <a
+                          href="#src-s11">S11</a>]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 id="automated-signals">Automated signals</h3>
+            <div class="table-card">
+              <table class="cols-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Group</th>
+                    <th scope="col">What the system checks</th>
+                    <th scope="col">Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Group">Contact details</td>
+                    <td data-label="What the system checks">An email address or portfolio site that is newly created or
+                      on an unusual domain. An internet-based phone number where a local one is expected, or a number
+                      that does not fit the stated location</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s3">S3</a>, <a
+                          href="#src-s4">S4</a>, <a href="#src-s12">S12</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Network and device</td>
+                    <td data-label="What the system checks">A VPN, proxy, or rented server. One IP address behind
+                      applications from supposedly different people. Device or network changes between stages</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s5">S5</a>, <a
+                          href="#src-s9">S9</a>, <a href="#src-s12">S12</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Application pattern</td>
+                    <td data-label="What the system checks">One person under several profiles. Many reworked copies of a
+                      single resume. Several unrelated applications within 48 hours. A resume that mirrors the job post
+                      too closely, or a file created minutes ago</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a
+                          href="#src-s8">S8</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Consistency of claims</td>
+                    <td data-label="What the system checks">Locations that disagree between the application, the resume,
+                      and the interview. Dates, roles, or locations that conflict with LinkedIn or public records.
+                      Overlapping full-time jobs. A photo that appears elsewhere online in an unrelated context</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s3">S3</a>, <a href="#src-s4">S4</a>, <a
+                          href="#src-s8">S8</a>, <a href="#src-s12">S12</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Group">Thin footprint</td>
+                    <td data-label="What the system checks">Little online presence for the seniority claimed</td>
+                    <td data-label="Source"><span class="cite">[<a href="#src-s1">S1</a>, <a
+                          href="#src-s8">S8</a>]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Recruiters should not need to search for any of this themselves. Even a manual routine of checking what
+              kind of phone number was given, comparing public profiles, and noticing IP addresses that recur across
+              submissions already uncovers a good part of the fraud <span class="cite">[<a
+                  href="#src-s12">S12</a>]</span>. Phase 1 therefore starts with these checks.</p>
+            <p>Points to keep in mind:</p>
+            <ul>
+              <li>Manual signals are judgment and can mislead. A camera kept off may reflect poor bandwidth, privacy, or
+                a disability. Pauses and filler words vary with language and temperament. A glance aside may be someone
+                checking notes. Questions and camera requests should not put at a disadvantage candidates who face
+                language, sensory, or technology limits <span class="cite">[<a href="#src-s10">S10</a>]</span>.</li>
+              <li>Asking every candidate for a role the same core questions makes answers comparable, so a very
+                different one stands out <span class="cite">[<a href="#src-s5">S5</a>, <a
+                    href="#src-s11">S11</a>]</span>.</li>
+              <li>A logged observation carries the recruiter’s name and the time, can be cleared like any other flag,
+                and is never the only reason to reject <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+            </ul>
+          </div>
+        </section>
+        <section aria-labelledby="problem-and-scope">
+          <div class="section-head">
+            <p class="eyebrow">01</p>
+            <h2 id="problem-and-scope">Problem and scope</h2>
+          </div>
+          <div class="flow">
+            <h3 id="problem-statement">Problem statement</h3>
+            <p>Recruiters waste time on the selection process and interviews because of candidates who aren't what they
+              claim to be: the
+              identity is invented, taken from another individual, submitted several times, or fronted by a stand-in. In
+              worst case scenario,
+              such a hire is handed company systems and data. ATS does not provide recruiters with a structured way to
+              identify identity-related risks,
+              address them consistently each time, or document the results.
+              Manual screening is effective, but it's not sufficient when a job opening attracts hundreds of applicants.
+              <span class="cite">[<a href="#src-s4">S4</a>]</span>.
+            </p>
+            <h3 id="what-this-prd-treats-as-identity-fraud">What this PRD treats as identity fraud</h3>
+            <p>Academic work offers a practical test. Is there a genuine individual behind the application, with real
+              skills that hiring can evaluate <span class="cite">[<a href="#src-s10">S10</a>]</span>?</p>
+            <ul>
+              <li><strong>In scope</strong>: the identity is invented, stolen, duplicated, or swapped midway.</li>
+              <li><strong>Out of scope</strong>: genuine applicants who overstate their experience or let AI draft their
+                resume. That concerns fits for the role, which is already covered by the standard evaluation process.
+                <span class="cite">[<a href="#src-s10">S10</a>, <a href="#src-s2">S2</a>]</span>.
+              </li>
+            </ul>
+            <p>The boundary protects honest candidates. By one US survey, 64.2% of workers said their resume had
+              contained a lie at some point <span class="cite">[<a href="#src-s7">S7</a>]</span>. In another, 67% of
+              employers were comfortable with applicants getting help from generative AI <span class="cite">[<a
+                  href="#src-s6">S6</a>]</span>. Calling either behaviour fraud would flag the majority of applicants.
+            </p>
+          </div>
+        </section>
+        <section aria-labelledby="types-of-fraud-and-which-are-in-scope">
+          <div class="section-head">
+            <p class="eyebrow">02</p>
+            <h2 id="types-of-fraud-and-which-are-in-scope">Types of fraud and which are in scope</h2>
+          </div>
+          <div class="flow">
+            <div class="table-card">
+              <table class="cols-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">What happens</th>
+                    <th scope="col">Stage</th>
+                    <th scope="col">Scope decision</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Type">Bulk and repeat applications</td>
+                    <td data-label="What happens">Software applies in bulk. One individual uses several profiles or
+                      sends many reworked copies of a single resume <span class="cite">[<a href="#src-s1">S1</a>, <a
+                          href="#src-s8">S8</a>]</span></td>
+                    <td data-label="Stage">Application</td>
+                    <td data-label="Scope decision"><span class="tag">In, Phase 1</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Invented identity</td>
+                    <td data-label="What happens">A persona with made-up contact details, a purpose-built LinkedIn
+                      profile, a generated photo, and no other online trace <span class="cite">[<a
+                          href="#src-s3">S3</a>, <a href="#src-s10">S10</a>]</span></td>
+                    <td data-label="Stage">Application, screening</td>
+                    <td data-label="Scope decision"><span class="tag">In, Phase 1</span> (signals), <span
+                        class="tag">Phase 2</span> (verification)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Stolen identity</td>
+                    <td data-label="What happens">Somebody applies with a real individual’s details, often via
+                      VPN <span class="cite">[<a href="#src-s5">S5</a>, <a href="#src-s6">S6</a>]</span></td>
+                    <td data-label="Stage">Application through offer</td>
+                    <td data-label="Scope decision"><span class="tag">In, Phase 2</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Stand-ins at interview</td>
+                    <td data-label="What happens">A substitute or a deepfake takes the interview, and somebody else
+                      turns up for work <span class="cite">[<a href="#src-s5">S5</a>, <a href="#src-s6">S6</a>, <a
+                          href="#src-s8">S8</a>]</span></td>
+                    <td data-label="Stage">Interview, onboarding</td>
+                    <td data-label="Scope decision"><span class="tag">Partly in, Phase 3</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Swap after the offer</td>
+                    <td data-label="What happens">Whoever completes onboarding is not the individual interviewed <span
+                        class="cite">[<a href="#src-s9">S9</a>]</span></td>
+                    <td data-label="Stage">Offer through onboarding</td>
+                    <td data-label="Scope decision"><span class="tag">In, Phase 3</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Cheating on assessments</td>
+                    <td data-label="What happens">The test is taken by somebody else or with banned help <span
+                        class="cite">[<a href="#src-s5">S5</a>, <a href="#src-s8">S8</a>]</span></td>
+                    <td data-label="Stage">Assessment</td>
+                    <td data-label="Scope decision"><span class="tag tag-outline">Out</span> Proctoring belongs to
+                      assessment partners</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">False credentials and references</td>
+                    <td data-label="What happens">Degrees, past employers, or referees that are not real. A paid fake
+                      referee averages $128.60 <span class="cite">[<a href="#src-s7">S7</a>]</span></td>
+                    <td data-label="Stage">Screening through offer</td>
+                    <td data-label="Scope decision"><span class="tag tag-outline">Out</span> Background check providers
+                      cover this</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Exaggeration and AI help</td>
+                    <td data-label="What happens">A genuine applicant inflates their skills or has AI produce the resume
+                      <span class="cite">[<a href="#src-s2">S2</a>, <a href="#src-s7">S7</a>]</span>
+                    </td>
+                    <td data-label="Stage">Application</td>
+                    <td data-label="Scope decision"><span class="tag tag-outline">Out</span> The identity is real</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Coordinated and state-linked groups mix these methods. The North Korean IT worker cases pair identities
+              taken from US citizens with VPNs and deepfakes <span class="cite">[<a href="#src-s6">S6</a>, <a
+                  href="#src-s10">S10</a>]</span>. The consequences are graver, but the defences are those in this
+              table.</p>
+          </div>
+        </section>
+        <section aria-labelledby="users-use-cases-and-workflow-points">
+          <div class="section-head">
+            <p class="eyebrow">03</p>
+            <h2 id="users-use-cases-and-workflow-points">Users, use cases, and workflow points</h2>
+          </div>
+          <div class="flow">
+            <div class="table-card">
+              <table class="cols-3">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">What they need</th>
+                    <th scope="col">Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="User"><strong>Recruiter</strong></td>
+                    <td data-label="What they need">See early which applications deserve extra scrutiny, and which step
+                      to take</td>
+                    <td data-label="Priority">Primary</td>
+                  </tr>
+                  <tr>
+                    <td data-label="User"><strong>Talent acquisition lead or account admin</strong></td>
+                    <td data-label="What they need">Apply one policy per role, and learn which channels send doubtful
+                      applicants</td>
+                    <td data-label="Priority">Primary</td>
+                  </tr>
+                  <tr>
+                    <td data-label="User"><strong>Hiring manager or interviewer</strong></td>
+                    <td data-label="What they need">Trust that the applicant and the interviewee are one and the same
+                    </td>
+                    <td data-label="Priority">Secondary</td>
+                  </tr>
+                  <tr>
+                    <td data-label="User"><strong>Security, IT, and compliance</strong></td>
+                    <td data-label="What they need">A record of checks and decisions, plus assurance on sensitive roles
+                      ahead of any access</td>
+                    <td data-label="Priority">Secondary (Phase 3)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="User"><strong>Genuine candidate</strong></td>
+                    <td data-label="What they need">Avoid being flagged by mistake, know what a check involves, and be
+                      able to challenge the result</td>
+                    <td data-label="Priority">Protected in every phase</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-card">
+              <table class="cols-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Stage</th>
+                    <th scope="col">Main risk</th>
+                    <th scope="col">How Workable could help</th>
+                    <th scope="col">Phase</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Stage">Sourcing and application</td>
+                    <td data-label="Main risk">Automated submissions, repeated applicants, invented profiles</td>
+                    <td data-label="How Workable could help">Risk signals, linking of repeated applicants, trust report
+                      by
+                      channel</td>
+                    <td data-label="Phase">1</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Stage">Screening</td>
+                    <td data-label="Main risk">Thin or conflicting identity details</td>
+                    <td data-label="How Workable could help">"Review" dashboard with reasons/actions</td>
+                    <td data-label="Phase">1</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Stage">Ahead of the first interview or the offer</td>
+                    <td data-label="Main risk">Stolen or invented identity</td>
+                    <td data-label="How Workable could help">Identity verification by a partner, requested when needed
+                    </td>
+                    <td data-label="Phase">2</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Stage">Interview</td>
+                    <td data-label="Main risk">A stand-in attends</td>
+                    <td data-label="How Workable could help">Verified status for interviewers, short guide</td>
+                    <td data-label="Phase">3</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Stage">Offer and onboarding</td>
+                    <td data-label="Main risk">A different individual joins</td>
+                    <td data-label="How Workable could help">Identity confirmed again at handover, record exported</td>
+                    <td data-label="Phase">3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="evidence-assumptions-hypotheses-research-needs">
+          <div class="section-head">
+            <p class="eyebrow">04</p>
+            <h2 id="evidence-assumptions-hypotheses-research-needs">Evidence, assumptions, hypotheses, research needs
+            </h2>
+          </div>
+          <div class="flow">
+            <h3 id="evidence-and-its-strength">Evidence and its strength</h3>
+            <div class="table-card">
+              <table class="cols-3 wide-first">
+                <thead>
+                  <tr>
+                    <th scope="col">Claim</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Strength</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Claim">A July 2026 screening run over 70,280 US-based candidates marked 46.2% for a
+                      second look. Queried, not proven</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s1">S1</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i></i><i></i></span>Weak to medium</span><span
+                        class="rating-note">A single vendor’s marketplace and flag definition, published as
+                        marketing</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">Aggregators and job boards produced flags about 1.8 times as often as paid
+                      social</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s1">S1</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i></i><i></i></span>Weak to medium</span><span
+                        class="rating-note">Same limits</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">In certain hiring rounds, over 30% of applicants were judged suspicious</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s3">S3</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i></i><i></i><i></i></span>Weak</span><span class="rating-note">A vendor’s
+                        own claim</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">One HR vendor’s customers put fraud in interviews at 10% to 30%, especially
+                      in engineering</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s6">S6</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i></i><i></i><i></i></span>Weak</span><span class="rating-note">A vendor
+                        executive relaying clients</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">Gartner expects one in four applicants may be fake by 2028</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s6">S6</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i></i><i></i><i></i></span>Weak</span><span class="rating-note">A
+                        prediction, not measured data</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">More than 300 US firms took on fraudulent workers unknowingly. Some kept
+                      their access for 4 to 6 months</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s10">S10</a> (citing a legal
+                        advisory)</span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i class="on"></i><i></i></span>Medium</span><span
+                        class="rating-note">Reported second hand</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">In January 2025 the US Justice Department charged five people over North
+                      Korean IT worker schemes</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s6">S6</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i class="on"></i><i
+                            class="on"></i></span>Strong</span><span class="rating-note">Public legal record</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">A poor hire is said to cost around 30% of first-year salary. Estimates for a
+                      fake employee run from $240,000 to $850,000</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s6">S6</a>, <a href="#src-s8">S8</a>, <a
+                          href="#src-s14">S14</a></span>
+                    </td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i class="on"></i><i
+                            class="on"></i></span>Strong</span><span class="rating-note">U.S Department of Labor</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">Pairing people with a detection model beat using only one of them. When the
+                      model erred, human accuracy fell 2.7%</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s10">S10</a> (citing Groh et al.,
+                        2022)</span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i class="on"></i><i class="on"></i><i></i></span>Medium</span><span
+                        class="rating-note">A real experiment, but on deepfake video, not hiring</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Claim">With very large applicant numbers, even a precise detector can swamp
+                      reviewers with false alarms</td>
+                    <td data-label="Source"><span class="cite"><a href="#src-s10">S10</a></span></td>
+                    <td data-label="Strength"><span class="rating"><span class="pips" aria-hidden="true"><i
+                            class="on"></i><i></i><i></i><i></i></span>Weak</span><span class="rating-note">Reasoning
+                        only, no data</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The evidence has two weaknesses. Nearly every prevalence figure comes from a company with a product to
+              sell, and the two academic papers propose frameworks without testing them on data <span class="cite">[<a
+                  href="#src-s9">S9</a>, <a href="#src-s10">S10</a>]</span>. No source reports a verified fraud rate,
+              and fraud that succeeds never appears in a dataset <span class="cite">[<a href="#src-s10">S10</a>]</span>.
+            </p>
+            <h3 id="assumptions-to-confirm-inside-workable">Assumptions to confirm inside Workable</h3>
+            <ul class="coded-list">
+              <li class="coded"><span class="tag">A1</span><span>Workable customers are mainly small or mid-sized with
+                  no security team of their own, so the feature must work well on default settings.</span></li>
+              <li class="coded"><span class="tag">A2</span><span>Job boards deliver a large part of Workable’s
+                  applications. In S1 that channel produced the most flags.</span></li>
+              <li class="coded"><span class="tag">A3</span><span>Workable already stores usable data: when each
+                  application arrived, contact details, the resume file, its channel, and a candidate’s history across
+                  jobs in an account.</span></li>
+              <li class="coded"><span class="tag">A4</span><span>The mechanism that connects background check and
+                  assessment providers to Workable can also carry an identity verification partner.</span></li>
+              <li class="coded"><span class="tag">A5</span><span>Customers will tolerate a “needs review” label that is
+                  occasionally mistaken, as long as it provides reasoning and is quick to clear.</span></li>
+            </ul>
+            <h3 id="hypotheses-to-test">Hypotheses to test</h3>
+            <ul class="coded-list">
+              <li class="coded"><span class="tag">H1</span><span>Anything visible at application (repeated applicants,
+                  contact detail validity, how it was submitted) catches the majority of the identity fraud that
+                  recruiters has to confirm.</span></li>
+              <li class="coded"><span class="tag">H2</span><span>Recruiters respond more consistently to a flag that
+                  lists its reasons than to an unexplained score.</span></li>
+              <li class="coded"><span class="tag">H3</span><span>Few genuine candidates drop out when verification is
+                  requested only at a chosen stage, since it reaches a small group who have already put effort
+                  in.</span></li>
+              <li class="coded"><span class="tag">H4</span><span>Tracking trust levels by channel leads customers to
+                  reallocate their spending on job ads</span></li>
+            </ul>
+            <h3 id="research-still-needed">Research still needed</h3>
+            <ul class="coded-list">
+              <li class="coded"><span class="tag">R1</span><span>Measure the problem in Workable’s own data: repeat and
+                  multi-profile applicants, and rejection notes that already mention fake candidates, split by role type
+                  and channel.</span></li>
+              <li class="coded"><span class="tag">R2</span><span>Talk to 12 to 15 recruiters and admins across segments
+                  (tech, staffing agencies, high-volume hiring) about what they check by hand, which manual signals they
+                  rely on, and how much friction they would accept.</span></li>
+              <li class="coded"><span class="tag">R3</span><span>Assemble a set of confirmed cases, so signal precision
+                  can be before release.</span></li>
+              <li class="coded"><span class="tag">R4</span><span>Get a legal review per market on automated decisions,
+                  biometric data, and AI in employment (needs verification by counsel).</span></li>
+              <li class="coded"><span class="tag">R5</span><span>Research with candidates: how genuine applicants feel
+                  when asked to verify, and which groups a check might shut out.</span></li>
+            </ul>
+          </div>
+        </section>
+        <section aria-labelledby="competitive-analysis">
+          <div class="section-head">
+            <p class="eyebrow">05</p>
+            <h2 id="competitive-analysis">Competitive analysis</h2>
+          </div>
+          <div class="flow">
+            <p>Drawn from what vendors publish about themselves. Nothing has been tested hands-on.</p>
+            <div class="table-card">
+              <table class="cols-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">What they do</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Player"><strong>Greenhouse</strong></td>
+                    <td data-label="Type">ATS</td>
+                    <td data-label="What they do">Partner CLEAR checks a government ID and a biometric match inside the
+                      hiring flow. AI is presented as a helper that spots repeated applications from one IP address and
+                      resumes that contradict online profiles <span class="cite">[<a href="#src-s5">S5</a>]</span></td>
+                    <td data-label="Why it matters">Makes this an expected ATS feature</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>hackajob (Archer Approves)</strong></td>
+                    <td data-label="Type">Talent marketplace</td>
+                    <td data-label="What they do">Three steps: a single verified profile per job seeker, checks on
+                      online signals, and a government ID check that is optional or set by the employer. Reports over
+                      30,000 fake applicants stopped monthly <span class="cite">[<a href="#src-s1">S1</a>]</span></td>
+                    <td data-label="Why it matters">Owns the candidate account, unlike an ATS</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>Hero Parser</strong></td>
+                    <td data-label="Type">Parsing add-on</td>
+                    <td data-label="What they do">Examines phone, email, photo, location, work history, and LinkedIn.
+                      Marks items to check and leaves rejection to the recruiter. Says it meets GDPR and AI Act rules
+                      <span class="cite">[<a href="#src-s3">S3</a>, <a href="#src-s4">S4</a>]</span>
+                    </td>
+                    <td data-label="Why it matters">Single-purpose tool for IT hiring</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>Manatal</strong></td>
+                    <td data-label="Type">ATS</td>
+                    <td data-label="What they do">Checks candidate details against 20+ public platforms, reports unusual
+                      pipeline patterns, and adds proctoring via assessment partners <span class="cite">[<a
+                          href="#src-s8">S8</a>]</span></td>
+                    <td data-label="Why it matters">Reuses existing features. Silent on identity verification</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>Phenom</strong></td>
+                    <td data-label="Type">HR technology suite</td>
+                    <td data-label="What they do">Said it would release an AI agent that detects deepfakes during
+                      interviews <span class="cite">[<a href="#src-s6">S6</a>]</span></td>
+                    <td data-label="Why it matters">Enterprise buyers, interview stage</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>SHRM (shrm.org)</strong></td>
+                    <td data-label="Type">HR association, not a vendor</td>
+                    <td data-label="What they do">Sells no product. Its recent coverage advises employers to move
+                      identity, employment, and education checks ahead of the offer, compare application materials,
+                      documents, and online profiles, and set clear rules on AI use for candidates <span
+                        class="cite">[<a href="#src-s13">S13</a>]</span></td>
+                    <td data-label="Why it matters">Reaches HR and talent teams at large employers, so it shapes what
+                      big clients expect to see (needs verification). Treats a pre-offer check as normal practice</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Player"><strong>Neighbouring tools</strong></td>
+                    <td data-label="Type">Single-purpose products</td>
+                    <td data-label="What they do">Assessments with proctoring (HackerRank, Codility, TestGorilla), and
+                      checks on background and education (Certn, HireRight) <span class="cite">[<a
+                          href="#src-s8">S8</a>]</span></td>
+                    <td data-label="Why it matters">One stage each, often late. Nothing links the stages</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h4>What this tells us</h4>
+            <ol>
+              <li>Vendors are settling on one common approach: they combine various signals, add identity verification
+                only when necessary,
+                and leave the final decision to a human <span class="cite">[<a href="#src-s1">S1</a>, <a
+                    href="#src-s4">S4</a>, <a href="#src-s5">S5</a>]</span>.</li>
+              <li>The identity check is moving earlier: once part of the background check after an offer, now ahead of
+                the interview <span class="cite">[<a href="#src-s1">S1</a>, <a href="#src-s5">S5</a>]</span>.</li>
+              <li>Three openings remain for Workable: trust by channel for employers, a stated route for candidates to
+                challenge a flag, and ready-made defaults for teams with no security staff. No vendor reviewed explains
+                what happens to a candidate flagged in error.</li>
+            </ol>
+            <p>The sources do not cover Ashby, Lever, SmartRecruiters, Teamtailor, or specialist identity vendors. These
+              still need research.</p>
+          </div>
+        </section>
+        <section aria-labelledby="product-approaches-considered">
+          <div class="section-head">
+            <p class="eyebrow">06</p>
+            <h2 id="product-approaches-considered">Product approaches considered</h2>
+          </div>
+          <div class="flow">
+            <div class="table-card">
+              <table class="cols-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Approach</th>
+                    <th scope="col">What it involves</th>
+                    <th scope="col">Benefits</th>
+                    <th scope="col">Concerns</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Approach">A. Guidance and manual tools</td>
+                    <td data-label="What it involves">Warning-sign checklists, interview kits, a “suspected fraud”
+                      rejection reason</td>
+                    <td data-label="Benefits">Low cost, quick, little risk</td>
+                    <td data-label="Concerns">Cannot handle the workload. Depends on recruiters staying alert <span
+                        class="cite">[<a href="#src-s4">S4</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Approach">B. Background signals reviewed by recruiters</td>
+                    <td data-label="What it involves">Flags with reasons on applications. No automatic action</td>
+                    <td data-label="In its favour">Finds bulk fraud at the start, asks nothing of candidates, uses data
+                      Workable already holds</td>
+                    <td data-label="Against it">Signals are estimates: weak on stolen identities, sometimes wrong</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Approach">C. Identity verification is mandatory for all candidates</td>
+                    <td data-label="What it involves">Every applicant verifies a government ID on applying</td>
+                    <td data-label="In its favour">The most powerful single check <span class="cite">[<a
+                          href="#src-s1">S1</a>]</span></td>
+                    <td data-label="Against it">Heavy for candidates, cost per application, a privacy concern, a barrier
+                      for some genuine people. It confirms the document, not the holder’s location <span
+                        class="cite">[<a href="#src-s1">S1</a>]</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Approach">D. Detecting deepfakes in interview media</td>
+                    <td data-label="What it involves">Analysis of live video and sound</td>
+                    <td data-label="In its favour">Tackles the threat people fear most</td>
+                    <td data-label="Against it">Fast-moving technology makes detection a constant chase <span
+                        class="cite">[<a href="#src-s10">S10</a>]</span>. Biometric and legal exposure. Costly to build
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Approach">E. Layers: signals, then verification when needed, then same-person checks
+                    </td>
+                    <td data-label="What it involves">Begins with B. Verification only when policy or risk requires it.
+                      The verified identity follows the candidate between stages <span class="cite">[<a
+                          href="#src-s9">S9</a>]</span></td>
+                    <td data-label="In its favour">Friction matches risk. Each layer covers the last one’s gap. Useful
+                      from the first release</td>
+                    <td data-label="Against it">Step up when needed, needs a consistent partner.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="recommendation-and-trade-offs">
+          <div class="section-head">
+            <p class="eyebrow">07</p>
+            <h2 id="recommendation-and-trade-offs">Recommendation and <span class="nowrap">trade-offs</span></h2>
+          </div>
+          <div class="flow">
+            <p class="statement">Select Approach E and implement it in the following order: first, the signals; second,
+              verification upon request;
+              <span class="nowrap">third, checks performed</span> by the same person.
+            </p>
+            <p>Reasons:</p>
+            <ul>
+              <li><strong>The evidence points this way.</strong> Sources agree that a single signal proves nothing on
+                its own.
+                recommend combining signals and having a person review them.<span class="cite">[<a
+                    href="#src-s1">S1</a>, <a href="#src-s4">S4</a>, <a href="#src-s9">S9</a>, <a
+                    href="#src-s10">S10</a>]</span>.</li>
+              <li><strong>The burden matches the risk.</strong> Most applicants are genuine, so only a small group would
+                be asked to verify,
+                and employers can tie the rule to how sensitive a role is (We still need to confirm that the friction is
+                low )<span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+              <li><strong>Customers benefit from Phase 1</strong>, which runs on data Workable owns and needs no partner
+                agreement.</li>
+              <li><strong>It's compatible with Workable.</strong> The whole pipeline lives in Workable, so signals
+                from different stages can be joined up, which single-purpose tools cannot do <span class="cite">[<a
+                    href="#src-s9">S9</a>]</span>.</li>
+            </ul>
+            <p>Principles for every phase:</p>
+            <ol>
+              <li><strong>A flag is a prompt, not a judgment.</strong> The wording is “Needs review”, never “Fraud”. The
+                system rejects nobody <span class="cite">[<a href="#src-s4">S4</a>, <a href="#src-s9">S9</a>]</span>.
+              </li>
+              <li><strong>Reasons are shown.</strong> Each flag says in everyday language what triggered it <span
+                  class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+              <li><strong>Same rule for everyone.</strong> An account policy by role and stage decides who verifies, not
+                a recruiter’s hunch about one individual <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+              <li><strong>As little data as possible.</strong> Workable keeps no biometric data, and signals never use
+                protected characteristics <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+              <li><strong>Open with candidates.</strong> We tell candidates that checks take place, and they can request
+                a second look <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+            </ol>
+            <p>What we give up:</p>
+            <ul>
+              <li>Phases 1 to 3 do not spot a deepfake during a live interview. We lower that risk another way, by
+                confirming who the candidate is in advance.</li>
+              <li>Skilled fraudsters will get past the signals, and some genuine applicants will be flagged. We accept
+                catching fewer cases as the price of never rejecting automatically.</li>
+              <li>Reviewing flags is extra work for recruiters. It will take more time than the interviews saves.
+              </li>
+              <li>Verification relies on an outside provider, which sets the quality, the countries covered, and the
+                price.</li>
+            </ul>
+          </div>
+        </section>
+        <section aria-labelledby="scope-and-phased-delivery">
+          <div class="section-head">
+            <p class="eyebrow">08</p>
+            <h2 id="scope-and-phased-delivery">Scope and phased delivery plan</h2>
+          </div>
+          <div class="flow">
+            <p>Timings are rough, assume a single cross-functional squad, and will be revised once discovery is
+              complete.</p>
+            <div class="table-card">
+              <table class="cols-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Phase</th>
+                    <th scope="col">Aim</th>
+                    <th scope="col">What is included</th>
+                    <th scope="col">Done when</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Phase"><strong>0. Discovery</strong> (4 to 6 weeks)</td>
+                    <td data-label="Aim">Size the problem, remove the main unknowns</td>
+                    <td data-label="What is included">R1 to R5. Trial candidate signals on past data, unseen by users.
+                      Sign up 5 to 8 design partners</td>
+                    <td data-label="Done when">Baseline rates, legal position per market, and signal list are known</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Phase"><strong>1. Application signals</strong> (about one quarter)</td>
+                    <td data-label="Aim">Let recruiters catch doubtful applications early</td>
+                    <td data-label="What is included">Linking of repeat and multi-profile applicants, contact detail
+                      checks, submission pattern signals, recruiter observation log, “Needs review” dashboard with
+                      reasons,
+                      actions to settle a flag, trust report by channel, notice to candidates. Hidden first, then beta
+                    </td>
+                    <td data-label="Done when">Flag precision hits target on design partner data. Application completion
+                      does not drop</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Phase"><strong>2. Verification on request</strong> (about one quarter)</td>
+                    <td data-label="Aim">Verify a candidate's identity when it matters</td>
+                    <td data-label="What is included">Partner integration, rules by role and stage, candidate
+                      verification flow with a second route, verified status on the profile</td>
+                    <td data-label="Done when">Verification completion and drop-off stay inside guardrails</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Phase"><strong>3. Same-person checks</strong> (later)</td>
+                    <td data-label="Aim">Ensure whoever is hired is the individual verified</td>
+                    <td data-label="What is included">Verified status shown to interviewers, repeat check at offer and
+                      onboarding handover, interviewer guide, exportable record for security teams</td>
+                    <td data-label="Done when">Defined with design partners in regulated or sensitive industries</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card card-soft">
+              <p class="eyebrow">explicitly out of scope</p>
+              <p>Automatic rejection, deepfake analysis of video or audio, assessment proctoring, credential and
+                reference checks, spotting AI-written resumes, monitoring after hire, and passing flagged candidate data
+                between customers (to be reconsidered only following a privacy review).</p>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="epics-and-user-stories">
+          <div class="section-head">
+            <p class="eyebrow">09</p>
+            <h2 id="epics-and-user-stories">Epics and user stories</h2>
+          </div>
+          <div class="flow">
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Risk signals</h4>
+                <div class="tag-row"><span class="tag">Epic 1</span><span class="tag tag-outline">Phase 1</span></div>
+              </div>
+              <ul>
+                <li>As a recruiter, I want profiles belonging to one individual grouped, so that I assess each applicant
+                  once.</li>
+                <li>As a recruiter, I want a warning when an email address or phone number looks throwaway or dead, so
+                  that I can check first.</li>
+                <li>As a recruiter, I want to be told when software appears to have sent an application, so that real
+                  applicants get my attention first.</li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Review experience</h4>
+                <div class="tag-row"><span class="tag">Epic 2</span><span class="tag tag-outline">Phase 1</span></div>
+              </div>
+              <ul>
+                <li>As a recruiter, I want each flag to explain itself in simple words, so that I can form my own view.
+                </li>
+                <li>As a recruiter, I want to close a flag as cleared, confirmed, or sent for verification, so that my
+                  decision is on record.</li>
+                <li>As a recruiter, I want a pipeline filter for review status, so that I can work through open flags
+                  together.</li>
+                <li>As a recruiter or interviewer, I want to log what I noticed, such as reluctance to move on camera,
+                  from a fixed list, so that my observation sits beside the automated signals for the rest of the team.
+                </li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Policy and controls</h4>
+                <div class="tag-row"><span class="tag">Epic 3</span><span class="tag tag-outline">Phase 1 to 2</span>
+                </div>
+              </div>
+              <ul>
+                <li>As an admin, I want to switch signals on or off and pick who sees them, so that the feature matches
+                  our rules.</li>
+                <li>As an admin, I want verification made mandatory for selected roles at a stage I pick, so that
+                  everyone applying for a role takes the same step.</li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Candidate notice and appeal</h4>
+                <div class="tag-row"><span class="tag">Epic 4</span><span class="tag tag-outline">Phase 1 to 2</span>
+                </div>
+              </div>
+              <ul>
+                <li>As a candidate, I want to know up front that my identity may be checked, so that the request is no
+                  surprise.</li>
+                <li>As a candidate, I want to ask a person to review a check that goes against me, so that a mistake
+                  does not lose me the opportunity.</li>
+                <li>As a candidate, I want another route to verify when the usual one fails me, so that I can still take
+                  part.</li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Verification on request</h4>
+                <div class="tag-row"><span class="tag">Epic 5</span><span class="tag tag-outline">Phase 2</span></div>
+              </div>
+              <ul>
+                <li>As a recruiter, I want to request verification with a single click, so that any doubt is settled
+                  ahead of the interview.</li>
+                <li>As a candidate, I want verification to take a few minutes on a phone, so that my application keeps
+                  moving.</li>
+                <li>As a hiring manager, I want to see the verified status when I prepare, so that I know I will be
+                  meeting the applicant.</li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Measurement and audit</h4>
+                <div class="tag-row"><span class="tag">Epic 6</span><span class="tag tag-outline">All phases</span>
+                </div>
+              </div>
+              <ul>
+                <li>As an admin, I want a report of how often each channel produces flags, so that I can change where we
+                  advertise.</li>
+                <li>As a compliance owner, I want every flag and decision logged with the decision maker’s name, so that
+                  we can respond to an audit or complaint.</li>
+                <li>As the product team, we want recruiters’ decisions to feed signal tuning, so that flags become more
+                  precise with use.</li>
+              </ul>
+            </article>
+            <article class="card epic">
+              <div class="epic-head">
+                <h4>Same-person checks</h4>
+                <div class="tag-row"><span class="tag">Epic 7</span><span class="tag tag-outline">Phase 3</span></div>
+              </div>
+              <ul>
+                <li>As an HR admin, I want identity checked again when the offer is accepted, so that the new joiner is
+                  the individual we verified.</li>
+                <li>As a security lead, I want the verified status in hand before accounts are created, so that access
+                  decisions build on the hiring record.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <section aria-labelledby="success-metrics">
+          <div class="section-head">
+            <p class="eyebrow">10</p>
+            <h2 id="success-metrics">Success metrics</h2>
+          </div>
+          <div class="flow">
+            <p>Provisional targets are informed guesses that Phase 0 will replace.</p>
+            <div class="table-card">
+              <table class="cols-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Target</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Type"><strong>Primary outcome</strong></td>
+                    <td data-label="Metric">Share of confirmed fraud cases found ahead of the first interview</td>
+                    <td data-label="Target">Up every quarter. Phase 0 sets the baseline</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Primary outcome</strong></td>
+                    <td data-label="Metric">Interview hours per account that went to candidates later confirmed as
+                      fraudulent</td>
+                    <td data-label="Target">Cut by 50% in active accounts (provisional)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Quality</strong></td>
+                    <td data-label="Metric">Flag precision: reviewed flags that recruiters confirm</td>
+                    <td data-label="Target">60% or more at launch, then rising (provisional)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Adoption</strong></td>
+                    <td data-label="Metric">Proportion of flags a recruiter settles inside 5 working days</td>
+                    <td data-label="Target">70% or more (provisional)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Guardrail: fairness</strong></td>
+                    <td data-label="Metric">Flagged and cleared rates by candidate country, channel, and career stage
+                    </td>
+                    <td data-label="Target">No gap we cannot explain. Checked monthly</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Guardrail: candidate experience</strong></td>
+                    <td data-label="Metric">Completion rates for applications and verification. Review requests and
+                      overturned flags</td>
+                    <td data-label="Target">Application completion holds steady. Verification completion of 85% or more
+                      (provisional)</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Guardrail: speed</strong></td>
+                    <td data-label="Metric">Time to hire in accounts that use the feature</td>
+                    <td data-label="Target">Does not get worse</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type"><strong>Business</strong></td>
+                    <td data-label="Metric">Uptake in the target segment, mentions in notes on won and lost deals,
+                      retention of adopting accounts</td>
+                    <td data-label="Target">Measured only. No target for the first year</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>One limit to state plainly: only detected fraud can be counted. What slips through leaves no trace, so
+              recall cannot be measured directly <span class="cite">[<a href="#src-s10">S10</a>]</span>. Reducing the
+              gap between design partner
+              audits and planted test cases.</p>
+          </div>
+        </section>
+        <section aria-labelledby="risks-dependencies-and-open-questions">
+          <div class="section-head">
+            <p class="eyebrow">11</p>
+            <h2 id="risks-dependencies-and-open-questions">Risks, dependencies, and open questions</h2>
+          </div>
+          <div class="flow">
+            <h3 id="risks">Risks</h3>
+            <div class="table-card">
+              <table class="cols-3 wide-first">
+                <thead>
+                  <tr>
+                    <th scope="col">Risk</th>
+                    <th scope="col">Impact</th>
+                    <th scope="col">Mitigation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Risk"><strong>Wrong flags and unfair results.</strong> A recently created email, an
+                      internet-based phone number, a VPN, or a small online presence are also normal for honest people
+                      who are early in their career, guard their privacy, or have just relocated</td>
+                    <td data-label="Impact">Honest candidates lose out. Legal risk for customers</td>
+                    <td data-label="Mitigation">No automatic rejection. Reasons on every flag. Fairness guardrail. Route
+                      to challenge. Several signals needed per flag <span class="cite">[<a href="#src-s1">S1</a>]</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>Regulation.</strong> Markets differ in their rules on automated
+                      decisions, biometric data, and AI in employment (needs verification by counsel)</td>
+                    <td data-label="Impact">Launch blocked, or liability for Workable</td>
+                    <td data-label="Mitigation">Legal review in Phase 0. A person decides. Biometric data stays with the
+                      partner. Region-by-region release</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>Flags ignored or over-trusted.</strong> Recruiters may skip flags or
+                      accept them unthinkingly. A wrong model can lower human accuracy <span class="cite">[<a
+                          href="#src-s10">S10</a>]</span></td>
+                    <td data-label="Impact">No benefit, or biased decisions</td>
+                    <td data-label="Mitigation">Prioritise precision. Neutral wording. Guidance inside the product</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>A moving target.</strong> Fraud methods change more quickly than
+                      product releases <span class="cite">[<a href="#src-s10">S10</a>]</span></td>
+                    <td data-label="Impact">Signals lose their power</td>
+                    <td data-label="Mitigation">Learn from recruiter decisions. Keep several layers. Never show
+                      candidates how detection works</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>Verification that reassures too much.</strong> A genuine document says
+                      nothing about location, or about who ends up doing the job <span class="cite">[<a
+                          href="#src-s1">S1</a>]</span></td>
+                    <td data-label="Impact">Fraud carries a “verified” badge</td>
+                    <td data-label="Mitigation">Explain precisely what verified covers. Add the Phase 3 checks</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>Candidates put off.</strong> Being asked to verify drives good
+                      candidates away</td>
+                    <td data-label="Impact">Fewer completed applications</td>
+                    <td data-label="Mitigation">Ask only when needed, once candidates are committed, with a quick mobile
+                      flow</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Risk"><strong>Reliance on a partner</strong></td>
+                    <td data-label="Impact">Costs, countries not covered, downtime</td>
+                    <td data-label="Mitigation">Assess two vendors. Build the integration so the partner can be swapped
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 id="dependencies">Dependencies</h3>
+            <ul>
+              <li>Legal and privacy review in every market.</li>
+              <li>An identity verification partner and commercial terms for Phase 2.</li>
+              <li>The data and ML platform, for computing signals and taking in feedback.</li>
+              <li>The teams behind the application form, candidate profile, reporting, and onboarding handover.</li>
+              <li>Customer success and support, ready for launch and for candidates’ review requests.</li>
+              <li>Design partners who will label the cases they confirm.</li>
+            </ul>
+            <h3 id="open-questions">Open questions</h3>
+            <ol>
+              <li>How big is the problem in Workable today, by segment and channel? (R1)</li>
+              <li>Does Phase 1 belong in the core product or in a paid add-on, and who covers each verification?</li>
+              <li>Should everyone on a hiring team see the signals, or only recruiters and admins?</li>
+              <li>Who deals with a candidate’s request for review: the employer, Workable, or the verification partner?
+              </li>
+              <li>Is it lawful to use signals across accounts, for example one invented profile applying to many
+                Workable customers? This may be both the most powerful signal and the hardest privacy issue.</li>
+              <li>Do staffing agencies belong in the launch segment? Their reputation suffers more than most if a fake
+                candidate reaches a client <span class="cite">[<a href="#src-s8">S8</a>]</span>.</li>
+              <li>In markets where the partner supports few document types, what should “verified” mean?</li>
+            </ol>
+          </div>
+        </section>
+        <section aria-labelledby="sources">
+          <div class="section-head">
+            <p class="eyebrow">Appendix</p>
+            <h2 id="sources">Sources</h2>
+          </div>
+          <div class="flow">
+            <ul class="sources">
+              <li id="src-s1"><span class="tag">S1</span>
+                <div><span class="src-title"><a
+                      href="https://hackajob.com/employer/blog/fake-candidates-are-flooding-remote-hiring-here-s-how-to-spot-them">Victoria
+                      Davies, "Fake candidates are flooding remote hiring. Here's how to spot them.",
+                      (Sep 2026)</a></span></div>
+              </li>
+              <li id="src-s2"><span class="tag">S2</span>
+                <div><span class="src-title"><a
+                      href="https://hackajob.com/employer/blog/how-to-tell-if-a-candidate-really-has-the-skills-on-their-cv">Diana
+                      Minea, “How to tell if a candidate really has the skills
+                      on their CV” (Sep 2026)</a></span></div>
+              </li>
+              <li id="src-s3"><span class="tag">S3</span>
+                <div><span class="src-title"><a href="https://heroparser.com/fake-candidate-detection/">Hero Parser,
+                      “Fake candidates detection” product page</a></span>
+                </div>
+              </li>
+              <li id="src-s4"><span class="tag">S4</span>
+                <div><span class="src-title"><a
+                      href="https://heroparser.com/recruitment/how-to-detect-fake-candidates/">Hero Parser, “How to
+                      detect fake candidates before the
+                      interview?”</a></span></div>
+              </li>
+              <li id="src-s5"><span class="tag">S5</span>
+                <div><span class="src-title"><a
+                      href="https://www.greenhouse.com/blog/what-is-candidate-fraud-and-how-can-recruiters-prevent-it">Greenhouse,
+                      “What is candidate fraud, and how can recruiters
+                      prevent it?” (Nov 2025)</a></span></div>
+              </li>
+              <li id="src-s6"><span class="tag">S6</span>
+                <div><span class="src-title"><a
+                      href="https://www.computerworld.com/article/3964995/job-seekers-using-genai-to-fake-skills-and-credentials.html">Lucas
+                      Mearian, “Job seekers using genAI to fake skills and
+                      credentials” (Apr 2025)</a></span></div>
+              </li>
+              <li id="src-s7"><span class="tag">S7</span>
+                <div><span class="src-title"><a
+                      href="https://standout-cv.com/usa/stats-usa/study-fake-job-references-resume-lies#key-findings">Andrew
+                      Fennell, “How many people lie on their resume?” (survey of
+                      2,102 US adults, updated Mar 2025)</a></span></div>
+              </li>
+              <li id="src-s8"><span class="tag">S8</span>
+                <div><span class="src-title"><a
+                      href="https://www.manatal.com/fr/blog/how-to-identify-fake-candidates">Ann Schumann, “How to
+                      Identify Fake Candidates in Recruitment” (Jul
+                      2026)</a></span></div>
+              </li>
+              <li id="src-s9"><span class="tag">S9</span>
+                <div><span class="src-title"><a
+                      href="https://www.researchgate.net/publication/401727694_Preventing_Hiring_Fraud_and_Workforce_Risk_A_Real-Time_Candidate_Identity_Verification_Framework_for_US_Enterprises">Prasanna
+                      Bableshwar, “Preventing Hiring Fraud and Workforce Risk: A Real-Time Candidate Identity
+                      Verification Framework for U.S. Enterprises”, Human Resource and Leadership Journal 11(2), Mar
+                      2026 Georgia Institute of Technology
+                    </a></span></div>
+              </li>
+              <li id="src-s10"><span class="tag">S10</span>
+                <div><span class="src-title"><a
+                      href="https://www.sciencedirect.com/science/article/abs/pii/S1053482226000331">Pankaj C. Patel,
+                      “The phantom candidate: A framework for combating AI-enabled identity deception in remote hiring”,
+                      Villanova School of Business, Villanova University, 800 E. Lancaster Ave., Villanova, PA 19085,
+                      United States of America</a></span>
+                </div>
+              </li>
+              <li id="src-s11"><span class="tag">S11</span>
+                <div><span class="src-title"><a href="https://www.hiretruffle.com/blog/identify-fake-candidates">Rachel
+                      Hubbard, "9 proven ways to detect fake candidates during interviews" (Updated Oct 2026)</a></span>
+                </div>
+              </li>
+              <li id="src-s12"><span class="tag">S12</span>
+                <div><span class="src-title"><a href="https://www.greenhouse.com/blog/detecting-candidate-fraud">Micah
+                      Gebreyes, "Detecting candidate fraud: How to spot fake applicants and protect your hiring
+                      process" (Sep 2026)</a></span></div>
+              </li>
+              <li id="src-s13"><span class="tag">S13</span>
+                <div><span class="src-title"><a
+                      href="https://www.shrm.org/topics-tools/news/talent-acquisition/candidate-deception-poses-growing-risk-for-employers">Roy
+                      Maurer, SHRM, "Candidate Deception Poses Growing Risk for Employers" (Oct 2026)</a></span></div>
+              </li>
+              <li id="src-s14"><span class="tag">S14</span>
+                <div><span class="src-title"><a
+                      href="https://www.frontlinesourcegroup.com/blog-us-department-of-labor-bad-hire-30-percent-of-first-year-earnings.html">
+                      Bill Kasko, SHRM, "Did the Department of Labor really say a bad hire costs 30 percent?" (May
+                      2026)</a></span></div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footnote">
+      <span>Candidate Identity Trust in Workable · Product Requirements Document</span>
+      <span>Evangelos Papangelis · 10 November 2026</span>
+    </footer>
+  </div>
+</body>
+
+</html>
