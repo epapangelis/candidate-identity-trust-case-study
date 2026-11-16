@@ -1049,7 +1049,7 @@
               <p class="eyebrow">Recommendation</p>
               <p>Add identity trust to the Workable pipeline one layer at a time, with people making every decision.
                 Phase 1 puts automated identity risk signals, with their reasons, on each application, and gives
-                recruiters a place to log what they notice themselves. Phase 2 permits employers request identity
+                recruiters a place to log what they notice themselves. Phase 2 permits employers to request identity
                 verification from a partner service at a stage they choose. Phase 3 keeps the verified identity with the
                 candidate up to offer and onboarding. Workable raises the concern and explains it. Recruiters decide.
                 Nobody is rejected automatically.</p>
@@ -1773,8 +1773,9 @@
               </li>
               <li><strong>Reasons are shown.</strong> Each flag says in everyday language what triggered it <span
                   class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
-              <li><strong>Same rule for everyone.</strong> An account policy by role and stage decides who verifies, not
-                a recruiter’s hunch about one individual <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
+              <li><strong>Consistent triggers for everyone.</strong> Verification is triggered either automatically by a
+                role-based policy or by an active automated risk signal—never by an unprompted recruiter hunch <span
+                  class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
               <li><strong>As little data as possible.</strong> Workable keeps no biometric data, and signals never use
                 protected characteristics <span class="cite">[<a href="#src-s9">S9</a>]</span>.</li>
               <li><strong>Open with candidates.</strong> We tell candidates that checks take place, and they can request
@@ -1888,7 +1889,8 @@
                 <li>As a recruiter, I want a pipeline filter for review status, so that I can work through open flags
                   together.</li>
                 <li>As a recruiter or interviewer, I want to log what I noticed, such as reluctance to move on camera,
-                  from a fixed list, so that my observation sits beside the automated signals for the rest of the team.
+                  from a fixed list, so that my observation sits beside the automated signals for the authorized
+                  reviewers.
                 </li>
               </ul>
             </article>
@@ -1914,8 +1916,8 @@
               <ul>
                 <li>As a candidate, I want to know up front that my identity may be checked, so that the request is no
                   surprise.</li>
-                <li>As a candidate, I want to ask a person to review a check that goes against me, so that a mistake
-                  does not lose me the opportunity.</li>
+                <li>As a candidate, I want to ask a person to review a failed verification check in Phase 2, so that a
+                  mistake does not lose me the opportunity.</li>
                 <li>As a candidate, I want another route to verify when the usual one fails me, so that I can still take
                   part.</li>
               </ul>
@@ -1926,8 +1928,8 @@
                 <div class="tag-row"><span class="tag">Epic 5</span><span class="tag tag-outline">Phase 2</span></div>
               </div>
               <ul>
-                <li>As a recruiter, I want to request verification with a single click, so that any doubt is settled
-                  ahead of the interview.</li>
+                <li>As a recruiter, I want to request verification with a single click when an automated signal is
+                  active, so that any doubt is settled ahead of the interview.</li>
                 <li>As a candidate, I want verification to take a few minutes on a phone, so that my application keeps
                   moving.</li>
                 <li>As a hiring manager, I want to see the verified status when I prepare, so that I know I will be
@@ -2117,7 +2119,8 @@
             <ol>
               <li>How big is the problem in Workable today, by segment and channel? (R1)</li>
               <li>Does Phase 1 belong in the core product or in a paid add-on, and who covers each verification?</li>
-              <li>Should everyone on a hiring team see the signals, or only recruiters and admins?</li>
+              <li>Should interviewers see automated signals by default, or should visibility be restricted to recruiters
+                and admins unless enabled by account permissions?</li>
               <li>Who deals with a candidate’s request for review: the employer, Workable, or the verification partner?
               </li>
               <li>Is it lawful to use signals across accounts, for example one invented profile applying to many
